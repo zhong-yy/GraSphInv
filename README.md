@@ -36,6 +36,8 @@ sudo yum install netcdf-cxx-devel
 
 > For CentOS, old releases of Ubuntu or Fedora, it is recommended to build [netcdf-c](https://www.unidata.ucar.edu/software/netcdf/docs/) and [netcdf-cxx](https://github.com/Unidata/netcdf-cxx4) from the source code. 
 
+> Other third-party libraries are headers only, which are included in the `GraSphInv/src/3rd_party_lib` directory and do not need and any installation.
+
 **Building tools**
 
 - [GNU make](https://www.gnu.org/software/make/)

@@ -1,0 +1,21 @@
+# Compiled Object files
+*.o
+
+CMakeFiles/
+CMakeCache.txt
+makefile
+
+compile_commands.json
+
+.clangd/
+
+.cache/
+
+.vscode/
+
+/My_tests/
+
+/Miscellaneous/
+
+
+

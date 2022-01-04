@@ -45,9 +45,21 @@ sudo yum install netcdf-cxx-devel
 
 ### 1.3 Build
 
-(1) "cd" the `GraSphInv` directory
+(1) `cd` the `GraSphInv` directory
 
-(2) Edit `GraSphInv/Config.cmake`
+(2) `mkdir build`
+
+(3) `cd build`
+
+(4) `cmake ..`
+
+(5) `make`
+
+(6) [*Optional*] add `GraSphInv/build` directory to the environmental variable `PATH` so that you don't need to copy the program files to your working directories.
+
+
+
+**NOTE: If you don't use oneAPI c++ compiler, or you don't want netcdf, you need to modify  `GraSphInv/Config.cmake`  before building.**
 
 ```bash
 # Specify the c++ compiler. The default one is icpx (oneAPI).
@@ -57,14 +69,6 @@ set(USE_NETCDF TRUE)
 # Specify whether mkl library will be used. THe value should be TRUE or FALSE
 set(USE_MKL TRUE)
 ```
-
-(2) Type "mkdir build" to create a "build" folder
-
-(3) "cd build" and type cmake ..
-
-(4) Type make
-
-(5) [Optional] add `GraSphInv/build` directory to the environmental variable `PATH` so that you don't need to copy the program files to your working directories.
 
 ## 2 Usage
 

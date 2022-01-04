@@ -1,6 +1,6 @@
 # Compiled Object files
 *.o
-
+build
 CMakeFiles/
 CMakeCache.txt
 makefile

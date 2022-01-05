@@ -45,6 +45,8 @@ sudo yum install netcdf-cxx-devel
 
 ### 1.3 Build
 
+> NOTE: If you don't use the oneAPI c++ compiler, or you don't want to install netcdf, you need to modify  `GraSphInv/Config.cmake`  before compiling.
+
 (1) `cd` the `GraSphInv` directory
 
 (2) `mkdir build`
@@ -56,10 +58,6 @@ sudo yum install netcdf-cxx-devel
 (5) `make`
 
 (6) [*Optional*] add `GraSphInv/build` directory to the environmental variable `PATH` so that you don't need to copy the program files to your working directories.
-
-
-
-NOTE: If you don't use the oneAPI c++ compiler, or you don't want to install netcdf, you need to modify  `GraSphInv/Config.cmake`  before compiling.
 
 ## 2 Usage
 

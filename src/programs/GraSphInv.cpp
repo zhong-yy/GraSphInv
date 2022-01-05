@@ -643,7 +643,6 @@ void GraSphInv::write_result() {
     cout << "Writing the inversion model into file ..." << endl;
     inv->result2vtk(output_model_name);
     inv->result2txt(output_model_name);
-    cout << "x" << endl;
     inv->result2netcdf(output_model_name);
 
     cout << "Writing predicted data ..." << endl;

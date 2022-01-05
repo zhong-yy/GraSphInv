@@ -25,23 +25,23 @@ static const double SI2Eotvos = 1000000000.0;  // frac{1}{s^2} = 10^9\ Eotvos
 static const double SI2mGal = 100000.0;        // frac{m}{s^2} = 10^5\ mGal
 
 typedef std::complex<double> Dcomplex;
-typedef std::map<unsigned int, std::vector<unsigned int> > Field;
+//typedef std::map<unsigned int, std::vector<unsigned int> > Field;
 typedef Eigen::SparseMatrix<double, Eigen::RowMajor> SMatrix;
-typedef Eigen::VectorXd Vector;
+//typedef Eigen::VectorXd Vector;
 
-typedef Eigen::SparseVector<double> SparseVector;
-typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> DenseMatrix;
-typedef Eigen::Matrix<double, 4, 1> Vector4D;
-typedef Eigen::Matrix<double, 4, 4> Matrix4D;
-typedef Eigen::Matrix<double, 3, 3> Matrix3D;
-typedef Eigen::Matrix<double, 4, 3> Matrix43D;
-typedef Eigen::Matrix<double, 1, 3> Matrix13D;
-typedef Eigen::Matrix<double, 3, 1> Matrix31D;
+//typedef Eigen::SparseVector<double> SparseVector;
+//typedef Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic> DenseMatrix;
+//typedef Eigen::Matrix<double, 4, 1> Vector4D;
+//typedef Eigen::Matrix<double, 4, 4> Matrix4D;
+//typedef Eigen::Matrix<double, 3, 3> Matrix3D;
+//typedef Eigen::Matrix<double, 4, 3> Matrix43D;
+//typedef Eigen::Matrix<double, 1, 3> Matrix13D;
+//typedef Eigen::Matrix<double, 3, 1> Matrix31D;
 // typedef Eigen::Matrix<Dcomplex, 3,   1>    Matrix31C;
 // typedef Eigen::Matrix<Dcomplex, 3,   3>    Matrix3C;
-typedef Eigen::Matrix<double, 1, 4> Matrix14D;
-typedef Eigen::VectorXd DenseVector;
-typedef Eigen::Vector3d Vector3D;
+//typedef Eigen::Matrix<double, 1, 4> Matrix14D;
+//typedef Eigen::VectorXd DenseVector;
+//typedef Eigen::Vector3d Vector3D;
 
 enum ComputationOptions {
   Compute_V = 0x0001,

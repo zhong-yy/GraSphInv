@@ -24,13 +24,6 @@ class GravityField {
    public:
     GravityField(int order_);
     ~GravityField();
-    void g_dg_tg_for_tesseroids(const Point &x, std::vector<Tesseroid *> &Ts,
-                                double &g, Matrix31D &dg, Matrix3D &tg);
-    void g_dg_tg_own(const Point &x, Tesseroid *T, double &g, Matrix31D &dg,
-                     Matrix3D &tg);
-    void g_dg_tg_own_for_tesseroids(const Point &x,
-                                    std::vector<Tesseroid *> &Ts, double &g,
-                                    Matrix31D &dg, Matrix3D &tg);
 
     void field_for_a_tesseroid(const Point &x, Tesseroid *tess, double rho,
                                std::vector<double> &field,
@@ -45,8 +38,6 @@ class GravityField {
         const Point &x, Tesseroid *tess, double rho, std::vector<double> &field,
         std::bitset<10> flag = std::bitset<10>(~0ULL));
 
-    void g_dg_tg_for_consant_tesseroids(const Point &x, double &g,
-                                        Matrix31D &dg, Matrix3D &tg);
 
    private:
     // Gauss Rule used by the Tesseroid library

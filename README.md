@@ -2,11 +2,11 @@
 
 ## 1 Installation
 
-You need to compile from source. 
+You need to compile the program from source. 
 
 ### 1.1 Recommended Compiler
 
-The program is written in C++, so a C++ compiler is necessary. You can use one of the following compilers.
+The inversion program is written in C++. You can use one of the following compilers.
 
 - [Intel oneAPI (based on Clang)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html#gs.koucg5) (2021, 2022)
 
@@ -14,7 +14,7 @@ The program is written in C++, so a C++ compiler is necessary. You can use one o
 
 > The versions we have tested are given in brackets
 
-You can modify `Config.cmake` to specify a compiler. The default is oneAPI compiler for which the command is `icpx`.
+The default is oneAPI compiler for which the command is `icpx`. You can modify `Config.cmake` to specify a compiler.
 
 ### 1.2 Other requirements
 
@@ -59,16 +59,7 @@ sudo yum install netcdf-cxx-devel
 
 
 
-**NOTE: If you don't use oneAPI c++ compiler, or you don't want netcdf, you need to modify  `GraSphInv/Config.cmake`  before building.**
-
-```bash
-# Specify the c++ compiler. The default one is icpx (oneAPI).
-set(ENV{CXX} icpx)
-# Specify whether netcdf library will be used. The value should be TRUE or FALSE
-set(USE_NETCDF TRUE)
-# Specify whether mkl library will be used. THe value should be TRUE or FALSE
-set(USE_MKL TRUE)
-```
+NOTE: If you don't use the oneAPI c++ compiler, or you don't want to install netcdf, you need to modify  `GraSphInv/Config.cmake`  before compiling.
 
 ## 2 Usage
 

@@ -77,3 +77,9 @@ An inverted model can be  written to three different formats: *.txt, *.vtk, *.nc
 
 
 
+## 5 References
+
+Yiyuan Zhong, Zhengyong Ren, Jingtian Tang, et al. "Constrained gravity inversion with adaptive inversion grid refinement in spherical coordinates and its application for  mantle structure beneath Tibetan plateau", submitted, 2022
+
+
+

@@ -93,7 +93,7 @@ class GraSphInv {
 
 int main(int argc, char** argv) {
     if (argc < 2) {
-        printf("Usage: %s input_paramters_filename\n", argv[0]);
+        printf("Usage: %s [configuration_file]\n", argv[0]);
         return 1;
     }
 

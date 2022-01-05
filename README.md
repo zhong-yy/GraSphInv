@@ -18,7 +18,7 @@ The default is oneAPI compiler for which the command is `icpx`. You can modify `
 
 ### 1.2 Other requirements
 
-**3rd party libraries**
+#### 3rd party libraries
 
 - [gsl](https://www.gnu.org/software/gsl/) (necessary)
 - [netcdf](https://www.unidata.ucar.edu/software/netcdf/) (optional)
@@ -38,7 +38,7 @@ sudo yum install netcdf-cxx-devel
 
 > Other third-party libraries are headers only, which are included in the `GraSphInv/src/3rd_party_lib` directory and do not need and any installation.
 
-**Building tools**
+#### Building tools
 
 - [GNU make](https://www.gnu.org/software/make/)
 - [cmake](https://cmake.org/) 

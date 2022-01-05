@@ -57,7 +57,7 @@ sudo yum install netcdf-cxx-devel
 
 (5) `make`
 
-(6) [*Optional*] add `GraSphInv/build` directory to the environmental variable `PATH` so that you don't need to copy the program files to your working directories.
+(6) [*Optional*] add `GraSphInv/build` directory to the environmental variable `PATH` in `~/.bashrc`, so that you don't need to copy the  executable files to your working directories every time.
 
 ## 2 Usage
 

@@ -51,6 +51,80 @@ Fwd::Fwd(const Mesh& mesh_, const Observation& ob_, bitset<32> field_flag_,
     display_info_fields();
 }
 
+VectorXd Fwd::compute_gobs_without_G(const VectorXd& rho) {
+    VectorXd d;
+    bitset<10> basic_field_flag;
+    bitset<10> computed_field_flag;
+    //目前只定义了10个基本分量，basic_field_flag就是computed_field_flag
+    //以后扩展组合分量(比如T_xx-T_yy)的时候，computed_field_flag可以包含basic_field_flag
+    //（未实现）
+    for (int i = 0; i < 10; i++) {
+        basic_field_flag[i] = field_flag[i];
+        computed_field_flag[i] = field_flag[i];
+    }
+
+    int n_basic_fields = basic_field_flag.count();
+    int n_fields = field_flag.count();
+    int n_combined_fields = n_fields - n_basic_fields;
+
+    assert(n_fields >= n_basic_fields);
+    assert(Nm > 0);
+    assert(N_obs > 0);
+
+    // G.resize(n_fields * N_obs, Nm);
+    d.resize(Nd);
+
+    vector<int> basic_field_index;
+    for (int i = 0; i < 10; i++) {
+        // bool status = flag[i];
+        if (basic_field_flag[i]) {
+            basic_field_index.push_back(i);
+        }
+    }
+
+    assert(basic_field_index.size() == n_basic_fields);
+    // cout<<n_basic_fields<<endl;
+
+    void (GravityField::*formula)(const Point&, Tesseroid*, double,
+                                  std::vector<double>&, std::bitset<10>);
+    if (integral_kernel_type == 0) {
+        formula = &GravityField::field_for_a_tesseroid_surf;
+    } else {
+        formula = &GravityField::field_for_a_tesseroid;
+    }
+#pragma omp parallel for
+    for (int i = 0; i < N_obs; i++) {
+        for (int j = 0; j < Nm; j++) {
+            GravityField gra(GLQ_order);
+            vector<double> field;
+            (gra.*formula)(ob(i), &(mesh.get_elem(j)), rho(j), field,
+                           basic_field_flag);
+            // if(field.size() != n_basic_fields){
+            //     int cc=0,ind;
+            //     for(int k=0;k<field.size();k++){
+            //         if(abs(field[k])>TOL){
+            //             cc++;
+            //             ind=k;
+            //         }
+            //     }
+            //     cout<<"cc"<<cc<<endl;
+            //     cout<<"ind"<<ind<<endl;
+            //     cout<<field.size()<<endl;
+            //     cout<<n_basic_fields<<endl;
+            //     cout<<basic_field_index[0]<<endl;
+
+            // }
+
+            assert(basic_field_index.size() == n_basic_fields);
+
+            for (int k = 0; k < n_basic_fields; k++) {
+                d(i + k * N_obs) =
+                    d(i + k * N_obs) + field[basic_field_index[k]];
+            }
+        }
+    }
+    return d;
+}
 void Fwd::compute_G() {
     bitset<10> basic_field_flag;
     bitset<10> computed_field_flag;

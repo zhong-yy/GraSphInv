@@ -1869,7 +1869,8 @@ void Mesh::set_block_parameter(unsigned int i_min, unsigned int i_max,
     }
 }
 
-void Mesh::convert_txt_2_vtk(string input_txtfile, string output_vtkfile) {
+void Mesh::convert_txt_2_vtk(string input_txtfile, string output_vtkfile,
+                             int n) {
     ifstream in_txt(input_txtfile);
     ofstream out_vtk(output_vtkfile);
 
@@ -1877,8 +1878,9 @@ void Mesh::convert_txt_2_vtk(string input_txtfile, string output_vtkfile) {
 
     string line;
     // skip two lines
-    std::getline(in_txt, line);
-    std::getline(in_txt, line);
+    for (int i = 0; i < n; i++) {
+        std::getline(in_txt, line);
+    }
 
     Mesh txt_mesh;
     txt_mesh.cells.resize(1);

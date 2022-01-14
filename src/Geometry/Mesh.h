@@ -136,7 +136,7 @@ class Mesh {
     void out_model_vtk(
         string filename, int n = 1,
         vector<string> parameter_name = vector<string>(1, "density"));
-    void convert_txt_2_vtk(string txtfile, string vtkfile);
+    void convert_txt_2_vtk(string txtfile, string vtkfile, int n);
     int out_model_netcdf(string filename, int ith_para = 0,
                          string VAL_NAME = "density",
                          string VAL_UNITS = "kg/m3");

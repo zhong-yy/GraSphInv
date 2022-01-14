@@ -5,10 +5,12 @@
 # $ cmake --versionh
 cmake_minimum_required(VERSION 3.10)
 
+set (CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR})
 include("Config.cmake")
 
 # set the project name
-project(GraSphInv)
+project(GraSphInv
+    VERSION 1.0.0)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 find_package(OpenMP REQUIRED)
@@ -126,3 +128,10 @@ target_link_libraries(test_wavelet_forward
     PRIVATE
     Inversion_objs
     )
+install(FILES py_src/interpData.py
+    TYPE BIN)
+install(TARGETS GraSphInv RemoveCrustalEffect Synthetic_data ConvertTxt2Vtk Extract_slice Test_ordering test_wavelet_forward
+    )
+#if(UNIX)
+#message("Add the installation path to your PATH:\n1. Edit ~/.bashrc file, and add the following line\nexport PATH=${CMAKE_INSTALL_PREFIX}/bin$\{PATH:+:$\{PATH}}")
+#endif()

@@ -464,6 +464,10 @@ void Crust1Correction::build_mesh_of_moho() {
 void Crust1Correction::read_data_to_be_corrected() {
     cout << "Reading " << data_file << endl;
     ifstream input_stream(data_file.c_str());
+    if (!input_stream.good()) {
+        cout << "File " << data_file << "does not exist" << endl;
+        abort();
+    }
     assert(input_stream.good());
     string line;
     int n_obs = 0;  // number of observation points
@@ -579,7 +583,7 @@ void Crust1Correction::out_file() {
     }
 
     for (int j = 0; j < n_com; j++) {
-        string file_name = "rm_sedim" + strs[field_label[j]];
+        string file_name = "rm_sedim_" + strs[field_label[j]];
         ofstream out_s(file_name);
         for (int i = 0; i < n_ob; i++) {
             // get_n_obs() obtains number of observation points, data size =
@@ -595,7 +599,7 @@ void Crust1Correction::out_file() {
         }
     }
     for (int j = 0; j < n_com; j++) {
-        string file_name = "rm_sedim_cryst" + strs[field_label[j]];
+        string file_name = "rm_sedim_cryst_" + strs[field_label[j]];
         ofstream out_s(file_name);
         for (int i = 0; i < n_ob; i++) {
             // get_n_obs() obtains number of observation points, data size =
@@ -759,11 +763,12 @@ void Crust1Correction::gravity_effects_of_sediments() {
     Timer t;
     t.start();
     Fwd fwd(sediments, ob, field_flag, 8);
-    fwd.compute_G();
-    const MatrixXd& G = fwd.get_G();
+    // fwd.compute_G();
+    // const MatrixXd& G = fwd.get_G();
     VectorXd m;
     sediments.get_model_parameter_from_mesh(m);
-    gra_sediments = G * m;
+    gra_sediments = fwd.compute_gobs_without_G(m);
+    // gra_sediments = G * m;
     t.stop();
     cout << "Finished" << endl;
     cout << "Time: " << t.getElapsedTimeInSec() << " s" << endl;
@@ -776,11 +781,12 @@ void Crust1Correction::gravity_effects_of_crystalline_crusts() {
             "crusts"
          << endl;
     Fwd fwd(crystalline_crust, ob, field_flag, 8);
-    fwd.compute_G();
-    const MatrixXd& G = fwd.get_G();
+    // fwd.compute_G();
+    // const MatrixXd& G = fwd.get_G();
     VectorXd m;
     crystalline_crust.get_model_parameter_from_mesh(m);
-    gra_crystalline_crust = G * m;
+    gra_crystalline_crust = fwd.compute_gobs_without_G(m);
+    // gra_crystalline_crust = G * m;
     cout << "Finished" << endl;
     t.stop();
     cout << "Time: " << t.getElapsedTimeInSec() << " s" << endl;
@@ -791,11 +797,12 @@ void Crust1Correction::gravity_effects_of_moho() {
     t.start();
     cout << "Calculating gravity effects of moho" << endl;
     Fwd fwd(moho, ob, field_flag, 8);
-    fwd.compute_G();
-    const MatrixXd& G = fwd.get_G();
+    // fwd.compute_G();
+    // const MatrixXd& G = fwd.get_G();
     VectorXd m;
     moho.get_model_parameter_from_mesh(m);
-    gra_moho = G * m;
+    gra_moho = fwd.compute_gobs_without_G(m);
+    // gra_moho = G * m;
     cout << "Finished" << endl;
     t.stop();
     cout << "Time: " << t.getElapsedTimeInSec() << " s" << endl;

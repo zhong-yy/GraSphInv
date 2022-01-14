@@ -2,7 +2,7 @@
 #include <iostream>
 #include <string>
 
-#include "Crust1Correction2.h"
+#include "Crust1Correction.h"
 using namespace std;
 int main(int argc, char** argv) {
     if (argc < 2) {
@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
     }
     assert(argc == 2);
     string configuration_file(argv[1]);
-    Crust1Correction2 crust_correction;
+    Crust1Correction crust_correction;
 
     crust_correction.read_configuration_file(configuration_file);
     crust_correction.read_data_to_be_corrected();

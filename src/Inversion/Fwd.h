@@ -30,6 +30,7 @@ class Fwd {
         }
         return d;
     }
+    VectorXd compute_gobs_without_G(const VectorXd &rho);
 
     void set_field_flag(unsigned long long field_flag1) {
         field_flag = field_flag1;

@@ -5,12 +5,14 @@
 # $ cmake --versionh
 cmake_minimum_required(VERSION 3.10)
 
-set (CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR})
 include("Config.cmake")
 
 # set the project name
 project(GraSphInv
     VERSION 1.0.0)
+
+set (CMAKE_INSTALL_PREFIX ${CMAKE_SOURCE_DIR})
+
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS 1)
 find_package(OpenMP REQUIRED)
@@ -18,6 +20,7 @@ find_package(OpenMP REQUIRED)
 message("CMAKE_CXX_COMPILER_ID=${CMAKE_CXX_COMPILER_ID}")
 message("Compiler command: $ENV{CXX}")
 message("Openmp flag ${OpenMP_CXX_FLAGS}")
+message("Installation location: ${CMAKE_INSTALL_PREFIX}/bin")
 if (${USE_NETCDF})
     message("USE_NETCDF=${USE_NETCDF}; The netcdf library will be included.")
 endif()
@@ -26,6 +29,7 @@ endif()
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 #message("${CMAKE_CXX_COMPILER}")
+
 # Set a default build type if none was specified
 if(NOT CMAKE_BUILD_TYPE AND NOT CMAKE_CONFIGURATION_TYPES)
     message("Setting build type to 'Release' as none was specified.")

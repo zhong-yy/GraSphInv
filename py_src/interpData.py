@@ -9,51 +9,6 @@ def geo2cart(lon,lat,r):
     y=r*np.cos(lat)*np.sin(lon)
     z=r*np.sin(lat)
     return x,y,z
-def interp_lon_slice2(filename,lon0,start_lat,stop_lat,num_lat,start_r,stop_r,num_r,cols=[6,7,8,10],skiprows=2,neighbors=None,kernel='linear'):
-    # kernel: 'thin_plate_spline', 'linear', 'cubic'
-    #Load data
-    lon,lat,r,v=np.loadtxt(filename,skiprows=skiprows,usecols=cols,unpack=True)
-    x_cart,y_cart,z_cart=geo2cart(lon,lat,r)
-    min_x=np.min(x_cart)
-    min_y=np.min(y_cart)
-    min_z=np.min(z_cart)
-    
-    print(min_x,min_y,min_z)
-    print(np.max(x_cart),np.max(y_cart),np.max(z_cart))
-    
-    x_cart=x_cart-min_x
-    y_cart=y_cart-min_y
-    z_cart=z_cart-min_z
-
-    xyz=np.hstack((x_cart[:,np.newaxis],y_cart[:,np.newaxis],z_cart[:,np.newaxis]))
-
-    #Construct interpolation grid points
-    loni=np.array([lon0]) #lon
-    lati=np.linspace(start_lat,stop_lat,num_lat) #lat
-    ri=np.linspace(start_r,stop_r,num_r) #r
-    LONI,LATI,RI=np.meshgrid(loni,lati,ri) #geographic coordinates
-   
-    # cartesian coordinates
-    XI,YI,ZI=geo2cart(LONI,LATI,RI)
-    XI=XI-min_x
-    YI=YI-min_y
-    ZI=ZI-min_z #coordinate transformation is performed to stabilized the interpolation
-
-    XI_flat=XI.flatten()
-    YI_flat=YI.flatten()
-    ZI_flat=ZI.flatten()
-
-    #Perform radial basis function interpolation
-    #rbf=RBFInterpolator(xyz,v,neighbors=neighbors,kernel=kernel)
-    #XYZI_flat=XYZI_flat=np.hstack((XI_flat[:,np.newaxis],YI_flat[:,np.newaxis],ZI_flat[:,np.newaxis]))
-    #VI_flat=rbf(XYZI_flat)
-    #VI=np.reshape(VI_flat,XI.shape)
-    VI=griddata(xyz,v,(XI,YI,ZI),method='linear')
-
-    LATI_2d=LATI[:,0,:] # shape of YI is (ny,nx,nz)
-    RI_2d=RI[:,0,:] # shape of ZI is (ny,nx,nz)
-    VI_2d=VI[:,0,:]
-    return LATI_2d,RI_2d,VI_2d
 
 def interp_lon_slice(filename,lon0,start_lat,stop_lat,num_lat,start_r,stop_r,num_r,cols=[6,7,8,10],skiprows=2,neighbors=None,kernel='linear'):
     #Load data
@@ -94,9 +49,9 @@ def interp_lon_slice(filename,lon0,start_lat,stop_lat,num_lat,start_r,stop_r,num
     VI_flat=rbf(XYZI_flat)
     VI=np.reshape(VI_flat,XI.shape)
 
-    LATI_2d=LATI[:,0,:] # shape of YI is (ny,nx,nz)
-    RI_2d=RI[:,0,:] # shape of ZI is (ny,nx,nz)
-    VI_2d=VI[:,0,:]
+    LATI_2d=LATI[:,0,:].T # shape of YI is (ny,nx,nz)
+    RI_2d=RI[:,0,:].T # shape of ZI is (ny,nx,nz)
+    VI_2d=VI[:,0,:].T
     return LATI_2d,RI_2d,VI_2d
 
 def interp_lat_slice(filename,lat0,start_lon,stop_lon,num_lon,start_r,stop_r,num_r,cols=[6,7,8,10],skiprows=2,neighbors=None,kernel='linear'):
@@ -138,9 +93,9 @@ def interp_lat_slice(filename,lat0,start_lon,stop_lon,num_lon,start_r,stop_r,num
     VI_flat=rbf(XYZI_flat)
     VI=np.reshape(VI_flat,XI.shape)
 
-    LONI_2d=LONI[0,:,:] # shape of XI is (ny,nx,nz)
-    RI_2d=RI[0,:,:] # shape of ZI is (ny,nx,nz)
-    VI_2d=VI[0,:,:]
+    LONI_2d=LONI[0,:,:].T # shape of XI is (ny,nx,nz)
+    RI_2d=RI[0,:,:].T # shape of ZI is (ny,nx,nz)
+    VI_2d=VI[0,:,:].T
     return LONI_2d,RI_2d,VI_2d
 
 def interp_r_slice(filename,r0,start_lon,stop_lon,num_lon,start_lat,stop_lat,num_lat,cols=[6,7,8,10],skiprows=2,neighbors=None,kernel='linear'):
@@ -187,7 +142,7 @@ def interp_r_slice(filename,r0,start_lon,stop_lon,num_lon,start_lat,stop_lat,num
     VI_2d=VI[:,:,0]
     return LONI_2d,LATI_2d,VI_2d
 
-def interp_r_slice2(filename,r0,start_lon,stop_lon,num_lon,start_lat,stop_lat,num_lat,cols=[6,7,8,10],skiprows=2,neighbors=None,kernel='linear'):
+def interp_profiles(filename,interp_coords_file,output_filename,cols=[6,7,8,10],skiprows=2,neighbors=None,kernel='linear',ref_surface=6378.137):
     #Load data
     lon,lat,r,v=np.loadtxt(filename,skiprows=skiprows,usecols=cols,unpack=True)
     x_cart,y_cart,z_cart=geo2cart(lon,lat,r)
@@ -204,29 +159,21 @@ def interp_r_slice2(filename,r0,start_lon,stop_lon,num_lon,start_lat,stop_lat,nu
 
     xyz=np.hstack((x_cart[:,np.newaxis],y_cart[:,np.newaxis],z_cart[:,np.newaxis]))
 
-    #Construct interpolation grid points
-    ri=np.array([r0])
-    loni=np.linspace(start_lon,stop_lon,num_lon)
-    lati=np.linspace(start_lat,stop_lat,num_lat)
-    LONI,LATI,RI=np.meshgrid(loni,lati,ri) #geographic coordinates
-   
-    # cartesian coordinates
-    XI,YI,ZI=geo2cart(LONI,LATI,RI)
-    XI=XI-min_x
-    YI=YI-min_y
-    ZI=ZI-min_z #coordinate transformation is performed to stabilized the interpolation
 
-    XI_flat=XI.flatten()
-    YI_flat=YI.flatten()
-    ZI_flat=ZI.flatten()
+    # interpolator
+    rbf=RBFInterpolator(xyz,v,neighbors=neighbors,kernel=kernel)
 
-    #Perform radial basis function interpolation
-    VI=griddata(xyz,v,(XI,YI,ZI))
+    loni,lati,distancei,depi=np.loadtxt(interp_coords_file,unpack=True)
+    ri=ref_surface-depi
+    xi,yi,zi=geo2cart(loni,lati,ri)
+    xi=xi-min_x
+    yi=yi-min_y
+    zi=zi-min_z 
+    xyzi=np.hstack((xi[:,np.newaxis],yi[:,np.newaxis],zi[:,np.newaxis]))
+    vi=rbf(xyzi)
 
-    LONI_2d=LONI[:,:,0] # shape of XI is (ny,nx,nz)
-    LATI_2d=LATI[:,:,0] # shape of ZI is (ny,nx,nz)
-    VI_2d=VI[:,:,0]
-    return LONI_2d,LATI_2d,VI_2d
+    out_data=np.hstack((distancei[:,np.newaxis],depi[:,np.newaxis],vi[:,np.newaxis]))
+    np.savetxt(output_filename,out_data,fmt="%-25.6f")
 
 def interp_volume(filename,start_lon,stop_lon,num_lon,start_lat,stop_lat,num_lat,start_r,stop_r,num_r,cols=[6,7,8,10],skiprows=2,neighbors=None,kernel='linear'):
     #Load data

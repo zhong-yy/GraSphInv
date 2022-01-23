@@ -1,0 +1,45 @@
+/home/yyzhong/GraSphInv/My_tests/Useful_models/crust1
+Height of data from the reference surface  is 50000
+Reference level is 6378137
+Density of the upper crust in the reference density model (kg/m^3): 2700
+Density of the lower crust in the reference density model (kg/m^3): 2940
+Density of the mantle in the reference density model (kg/m^3): 3200
+Depth to the bottom of the upper crust in the reference density (m): 15000
+Depth to the bottom of the lower crust in the reference density (m): 40000
+
+1 gravity component is used
+Reading ../Eigen6C4/Bouguer_g_r
+Number of observation points: 20905
+A
+Reading /home/yyzhong/GraSphInv/My_tests/Useful_models/crust1/crust1.bnds
+Reading /home/yyzhong/GraSphInv/My_tests/Useful_models/crust1/crust1.rho
+num_upper_crust=64800
+num_middle_crust=64800
+num_lower_crust=64800
+average_upper_crystalline:2627.824
+average_middle_crystalline:2829.659
+average_lower_crystalline:3001.671
+deepest_upper_sediment=8.57
+deepest_middle_sediment=10.86
+deepest_lower_sediment=21
+deepest_upper_crust=34.82
+deepest_middle_crust=54.02
+deepest_lower_crust=74.81
+shallowest_lower_crust=7.4
+B
+The model has been written to vtk file: sediments.vtk
+C
+The model has been written to vtk file: crystalline_crust.vtk
+The model has been written to vtk file: moho.vtk
+Calculating gravity effects of density contrasts in sedimentary layers
+1 gravity field component is used. It is: 	g_r, 
+Finished
+Time: 12086.51 s
+Calculating gravity effects of density contrasts in crystalline crusts
+1 gravity field component is used. It is: 	g_r, 
+Finished
+Time: 35346.02 s
+Calculating gravity effects of moho
+1 gravity field component is used. It is: 	g_r, 
+Finished
+Time: 14112.13 s

@@ -155,7 +155,7 @@ void Crust1Correction::build_mesh_of_sediments() {
                         crust1_rho[i][j][2] * 1000 - reference_lower_crust);
                     id++;
                 } else {
-                    // span upper crust and lower crust
+                    // upper crust and lower crust
                     assert(r0 < r_upper_crust);
                     assert(r1 > r_upper_crust);
                     sediments.cells[0].push_back(new Cell(r0, theta0, phi0,
@@ -420,8 +420,10 @@ void Crust1Correction::build_mesh_of_moho() {
                 // moho is coincide with the reference crust-mantle boundary
                 // do nothing
             } else if (r_moho > r_lower_crust) {
+                // moho is above the reference crust-mantle boundary
+                //
                 if (r_moho > r_upper_crust) {
-                    // moho is above the reference crust-mantle boundary
+                    // moho passes through the reference upper crust
                     moho.cells[0].push_back(new Cell(r_lower_crust, theta0,
                                                      phi0, r_upper_crust,
                                                      theta1, phi1, 0, 1, true));
@@ -436,6 +438,7 @@ void Crust1Correction::build_mesh_of_moho() {
                                                      reference_upper_crust);
                     id++;
                 } else {
+                    // moho passes through the reference lower crust
                     moho.cells[0].push_back(new Cell(r_lower_crust, theta0,
                                                      phi0, r_moho, theta1, phi1,
                                                      0, 1, true));
@@ -665,7 +668,50 @@ void Crust1Correction::read_configuration_file(string file_name) {
     iss.clear();
     iss.str("");
     iss.str(line);
+    iss >> reference_upper_crust;
+    cout << "Density of the upper crust in the reference density model "
+            "(kg/m^3): "
+         << reference_upper_crust << endl;
 
+    next_valid_line(ifs, line);
+    iss.clear();
+    iss.str("");
+    iss.str(line);
+    iss >> reference_lower_crust;
+    cout << "Density of the lower crust in the reference density model "
+            "(kg/m^3): "
+         << reference_lower_crust << endl;
+
+    next_valid_line(ifs, line);
+    iss.clear();
+    iss.str("");
+    iss.str(line);
+    iss >> reference_mantle;
+    cout << "Density of the mantle in the reference density model (kg/m^3): "
+         << reference_mantle << endl;
+
+    next_valid_line(ifs, line);
+    iss.clear();
+    iss.str("");
+    iss.str(line);
+    iss >> reference_upper_crust_depth;
+    cout << "Depth to the bottom of the upper crust in the reference density "
+            "(m): "
+         << reference_upper_crust_depth << endl;
+
+    next_valid_line(ifs, line);
+    iss.clear();
+    iss.str("");
+    iss.str(line);
+    iss >> reference_lower_crust_depth;
+    cout << "Depth to the bottom of the lower crust in the reference density "
+            "(m): "
+         << reference_lower_crust_depth << endl;
+
+    next_valid_line(ifs, line);
+    iss.clear();
+    iss.str("");
+    iss.str(line);
     iss >> n_fields;
     cout << endl;
     cout << n_fields << " gravity component"

@@ -1,0 +1,26 @@
+Software                                           	2.1.4 (GUI used)
+Computer name                                      	LAPTOP-RTU9SKR6
+Generating date                                    	06-Jan-2022
+Generating time                                  	16:52:47
+MATLAB version                                   	8.6.0.267246 (R2015b)
+Computed                                         	Functionals of the geopotential
+Geopotential model file                          	F:\Literature\Gravity\Gravity_model\dV_ELL_Earth2014_plusGRS80.gfc
+GM of the geopotential model (m^3*s^-2)          	3.98600500000000e+14
+R of the geopotential model (m)                  	6.37813700000000e+06
+Minimum used degree                              	0
+Maximum used degree                              	2190
+Reference ellipsoid                              	GRS80
+Type of the input coordinates                    	Ellipsoidal
+Latitude limit North (deg)                       	4.80000000000000e+01
+Latitude limit South (deg)                       	2.00000000000000e+01
+Longitude limit West (deg)                       	6.50000000000000e+01
+Longitude limit East (deg)                       	1.11000000000000e+02
+Latitude parallels                               	113
+Longitude parallels                              	185
+Number of grid points                            	20905
+Grid height above the reference surface (m)      	5.00000000000000e+04
+Computation time (dd:hh:mm:ss)                     	00:00:00:17
+Computation of fully normalized ALFs             	Standard forward column method
+
+Exported data file contains the following columns:
+Ellipsoidal Latitude (deg)   Longitude (deg)   Gravity_vector_gX_gY_gZ (mGal)   

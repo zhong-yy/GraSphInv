@@ -1,0 +1,36 @@
+#path to the Crust 1.0 model
+/home/yyzhong/GraSphInv/My_tests/Useful_models/crust1
+
+#data to be corrected
+../Eigen6C4/Bouguer_g_r
+
+#observation height
+5.00000000000000e+04
+
+#reference surface of the planet
+6.37813700000000e+06
+
+# Density of the upper crust in the reference density model (kg/m^3)
+2700
+
+# Density of the lower crust in the reference density model (kg/m^3)
+2940
+
+# Density of the mantle in the reference density model (kg/m^3)
+3200
+
+# Depth to the bottom of the upper crust in the reference model (m)
+15000
+
+# Depth to the bottom of the lower crust in the reference model (m)
+40000
+
+#How many components will be use?
+1 
+
+#gravity component markers
+#0:V   1:gr   2:g_theta   3:g_phi   4:T_rr   5:T_rtheta   6:T_rphi   7:T_thetatheta   8:T_thetaphi   9:T_phiphi
+1
+
+
+

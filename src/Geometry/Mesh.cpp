@@ -1964,12 +1964,19 @@ void Mesh::out_model_txt(string filename, int ith_para,
     cout << "The model has been written to text file: " << filename << endl;
 }
 
+#pragma optimize("", off)
 void Mesh::out_model_vtk(string filename, int n,
                          vector<string> parameter_name) {
     // prepare the node
     std::set<Point> v_set;
     std::vector<std::vector<Point>> quad_prism(this->n_elems());
     // for (int i = 0; i < n_elems() && (this->get_elem(i)._phi[0] > 0.); i++)
+    // for (int i = 0; i < n_elems(); i++) {
+    //    if (!great_equal(this->get_elem(i)._phi[0], 0.)) {
+    //        cout << get_elem(i) << endl;
+    //        abort();
+    //    }
+    //}
     for (int i = 0; i < n_elems() && great_equal(this->get_elem(i)._phi[0], 0.);
          i++) {
         // build the point (8 points)
@@ -2006,8 +2013,13 @@ void Mesh::out_model_vtk(string filename, int n,
         v[17] = (v[1] + v[5]) * 0.5;
         v[18] = (v[2] + v[6]) * 0.5;
         v[19] = (v[3] + v[7]) * 0.5;
-        for (int j = 0; j < 20; j++) v_set.insert(v[j]);
-        for (int j = 0; j < 20; j++) quad_prism[i].push_back(v[j]);
+        for (int j = 0; j < 20; j++) {
+            v_set.insert(v[j]);
+        }
+        quad_prism[i].clear();
+        for (int j = 0; j < 20; j++) {
+            quad_prism[i].push_back(v[j]);
+        }
     }
     std::map<Point, unsigned int> v_id_map;
     unsigned int counter = 0;
@@ -2060,6 +2072,9 @@ void Mesh::out_model_vtk(string filename, int n,
         for (unsigned int i = 0;
              i < total_cells && great_equal(this->get_elem(i)._phi[0], 0.);
              i++) {
+            if (!great_equal(this->get_elem(i)._phi[0], 0.)) {
+                cout << get_elem(i) << endl;
+            }
             std::vector<Point>& T = quad_prism[i];  // 20 vertex
             assert(T.size() == 20);
             unsigned int T_ID[20];
@@ -2107,6 +2122,7 @@ void Mesh::out_model_vtk(string filename, int n,
     vtk_mesh.close();
     cout << "The model has been written to vtk file: " << filename << endl;
 }
+#pragma optimize("", on)
 
 map<unsigned int, Cell*> Mesh::refinement(Cell* c) {
     // cout<<"count="<<std::count(leaf_cells.begin(), leaf_cells.end(),

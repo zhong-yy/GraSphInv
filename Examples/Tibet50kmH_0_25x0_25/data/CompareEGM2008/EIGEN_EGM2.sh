@@ -84,3 +84,4 @@ rm $EIGEN6C4_FIELD"_gmt_format"
 rm $EIGEN6C4_FIELD"_grd"
 rm $EGM_FIELD"_gmt_format"
 rm $EGM_FIELD"_grd"
+rm residual_gmt_format

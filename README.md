@@ -65,6 +65,8 @@ sudo yum install netcdf-cxx-devel
 
 ### Inversion
 
+After compiling the source code, you will see a program called GraSphInv. It is the program for inversion
+
 ```
 GraSphInv [configuration file name]
 ```
@@ -79,7 +81,14 @@ config_inversion
 
 where config_data is a file that describes input data,  config_inversion is file that specifies inversion parameters, config_model is a file that specify the inversion region and initial mesh discretization.
 
-See `Examples/Synthetic_test1/gr_inv` as an example.
+#### Some examples
+
+- See `Examples/Synthetic_test1/gr_inv/Adaptive_Inversion` as an example for inversion using the an adaptively refined invesion mesh.
+
+- See `Examples/Synthetic_test1/gr_inv/Adaptive_Inversion/Adaptive_Inversion_crg` and `Examples/Synthetic_test1/gr_inv/Adaptive_Inversion/Adaptive_Inversion_pet` as an example using constraints
+
+- See `Examples/Synthetic_test1/gr_inv/Non-adaptive_Inversion`as an example for inversion using an fixed uniform mesh.
+- See `Examples/Synthetic_test1/gr_inv_wavelet` or `Examples/Synthetic_test1/gr_inv_wavelet/Non-adaptive_Inversion` as an example for inversion using wavelet compression
 
 ### Crustal correction
 

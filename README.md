@@ -63,15 +63,27 @@ sudo yum install netcdf-cxx-devel
 
 ## 2 Usage
 
-### 2.1 inversion
+### Inversion
 
+```
+GraSphInv [configuration file name]
+```
 
+The main configuration file is like this:
 
+```
+config_data
+config_model
+config_inversion
+```
 
+where config_data is a file that describes input data,  config_inversion is file that specifies inversion parameters, config_model is a file that specify the inversion region and initial mesh discretization.
 
-## 3 Examples
+See `Examples/Synthetic_test1/gr_inv` as an example.
 
+### Crustal correction
 
+RemoveCrustalEffect is a program for crustal correction. See `Examples/Tibet50kmH_0_25x0_25/data/Crust_Correction` as an example.
 
 ## 4 Output
 

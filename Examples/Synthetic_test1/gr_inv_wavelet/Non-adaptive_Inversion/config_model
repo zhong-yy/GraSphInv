@@ -1,0 +1,3 @@
+20 40 40#Range of latitude
+90 110 40#Range of longitude
+0 400000 20#Range of depth  

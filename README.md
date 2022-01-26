@@ -2,7 +2,7 @@
 
 ## 1 Installation
 
-You need to compile the program from source. 
+Compile the program from source. 
 
 ### 1.1 Recommended Compiler
 
@@ -57,25 +57,29 @@ sudo yum install netcdf-cxx-devel
 
 (5) `make`
 
-(6) [*Optional*] add `GraSphInv/build` directory to the environmental variable `PATH` in `~/.bashrc`, so that you don't need to copy the  executable files to your working directories every time.
+(6) `make install`
+
+(7) [*Optional*] add `GraSphInv/bin` directory to the environmental variable `PATH` in `~/.bashrc`, so that you don't need to copy the  executable files to your working directories every time.
 
 ## 2 Usage
 
+### 2.1 inversion
 
 
-## 3 Output
+
+
+
+## 3 Examples
+
+
+
+## 4 Output
 
 An inverted model can be  written to three different formats: *.txt, *.vtk, *.nc.
 
 - **txt** Each line represent a cell. But you cannot directly visualized the result in this format.  You need to use python, matlab or GMT to interpolate the values onto regular grids and then plot the results.
 - **vtk** The shape of a tesseroid is approximated by a polyhedron in *.vtk file. You can open a vtk file using Paraview. But it is not easy to show axes in spherical coordinates.
 - **nc** The netcdf library is used to write results into *.nc files. However, it is difficult to store an irregular mesh into a *.nc file. Here the workaround is to divide the adaptively refined mesh to a regular mesh where the cell size is the smallest one in the adaptively refined mesh
-
-
-
-## 4 Examples
-
-
 
 ## 5 References
 

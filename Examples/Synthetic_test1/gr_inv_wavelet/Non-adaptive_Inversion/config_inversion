@@ -1,0 +1,77 @@
+#configuration of inversion parameters. Comments that start with a character # and empty lines will not be read by the program
+
+#Order of Gauss-Legendre quadrature
+4
+
+#Choosing the type of the integral kernel, 1 for volume integral, 0 for surface integral
+0
+
+# How the sensitivity matrix is store, and how the conjugate gradient method is implemented
+# 0: store a full sensitivity matrix, and use the lscg implementation of Eigen 3 library (not recommended) (lscg: least square conjugate gradient method) 
+# 1: store a full sensitivity matrix, and use my own implementation of the lscg method
+# 2: use the wavelet transform to compress the sensitivity matrix, and use my own implementation of the lscg method
+2
+
+# If the above option is 2 (using wavelet transform), the following relative threshold should be defined
+# A larger threshold results in larger compression ratio, and larger approximation error as well
+0.005
+
+#Weights of different regularization terms
+#a_s a_r a_theta a_phi a_crg
+#last term a_crg is the weight of cross-gradient constraint, which makes sense only if the cross-gradient constraint is used
+1e-8 1e-1 1e0 1e0 0
+
+#Depth weighting exponent. Generally, it's 2 for g, 3 for ggt
+1.6
+
+#Maximal regularization parameter (lambda) used, number of lambda used for trial
+1e2 50 0.7
+
+#Target misfit
+1
+
+#Stagation factor, Gauss-Newton method stagnate when the relative difference of
+#misfits at 2 consecutive iterations is smaller than this factor
+0.025
+
+#Tolerance value and Maximal number of iterations for LSCG solver (least-square
+# conjugate gradient) 
+1e-6 100
+
+#Maximal number of iterations for gauss-newton
+5
+
+#upper limit and lower limit of the inverted parameter
+-300 300
+
+#Maximal times of refinement. If it's 0, the mesh will not be refined.
+0
+
+#Limits on minimum cell size in the adaptively refined mesh, only valid when the last line is greater than 0
+#latitude(deg) longitude(deg) depth(m)
+0 0 0
+
+#Invertion mesh is refined at every X GN iterations. If it is 0, the mesh will stay unchanged all the time.
+0
+
+#Proportion of elements that are marked for refinement, 
+0.0
+
+#control whether the model is recorded at each iteration of Gauss-Newton method
+0
+
+#whether to use cross-gradient constraint. 0 no, 1 yes
+0
+
+#cross-gradient constraint model file
+none xyz 0 0 0 0
+
+#whether to use petrophysical constraint. 0 no, 1 yes
+0
+
+#reference density model converted from other parameter (e.g. seismic). Users must 
+#convert models of other properties into density model in advance
+none xyz 0 0 0 0
+
+#output file of inversion model
+non_ada_result_wavelet

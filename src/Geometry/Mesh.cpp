@@ -1911,6 +1911,10 @@ void Mesh::convert_txt_2_vtk(string input_txtfile, string output_vtkfile,
         txt_mesh.leaf_cells[i] = txt_mesh.cells[0][i];
     }
     txt_mesh.out_model_vtk(output_vtkfile);
+    // string out_vtkfile_linear_projection = output_vtkfile;
+    // auto pos = output_vtkfile.find_first_of('.');
+    // out_vtkfile_linear_projection.insert(pos, "_linear_projection");
+    // txt_mesh.out_model_vtk_linear_projection(out_vtkfile_linear_projection);
 }
 void Mesh::out_model_txt(string filename, int ith_para,
                          double reference_surface) {
@@ -2092,6 +2096,156 @@ void Mesh::out_model_vtk(string filename, int n,
         vtk_mesh << "\nCELL_TYPES\t" << total_cells << "\n";
         for (unsigned int i = 0; i < total_cells; i++) {
             vtk_mesh << (unsigned int)25 << "\n";  // 25-Quadratic_hexahedron
+            // figure 3 in vtk format file.
+        }
+
+        // Part 5, attributes
+        vtk_mesh << "\nCELL_DATA\t" << total_cells << "\n";
+        for (int j = 0; j < n; j++) {
+            vtk_mesh << "SCALARS " << parameter_name[j] << " double 1\n"
+                     << "LOOKUP_TABLE "
+                     << "table" << j << endl;
+            for (unsigned int i = 0; i < total_cells; i++) {
+                double value = leaf_cells[i]->get_parameter(j);
+                vtk_mesh << value << "\n";
+            }
+        }
+
+        /*
+           vtk_mesh<<"SCALARS Elevation double 1\n"
+           <<"LOOKUP_TABLE default\n";
+           for(unsigned int i=0; i<total_cells; i++) {
+           double color_value = this->get_elem(i)._r[1]-GS::MER;
+           vtk_mesh<<color_value <<"\n";
+           }
+           */
+        vtk_mesh << "\n";
+
+    }  // file opened successfully
+
+    vtk_mesh.close();
+    cout << "The model has been written to vtk file: " << filename << endl;
+}
+#pragma optimize("", on)
+
+#pragma optimize("", off)
+void Mesh::out_model_vtk_linear_projection(string filename, int n,
+                                           double reference_surface,
+                                           vector<string> parameter_name) {
+    // prepare the node
+    std::set<Point> v_set;
+    std::vector<std::vector<Point>> prism(this->n_elems());
+    // for (int i = 0; i < n_elems() && (this->get_elem(i)._phi[0] > 0.); i++)
+    // for (int i = 0; i < n_elems(); i++) {
+    //    if (!great_equal(this->get_elem(i)._phi[0], 0.)) {
+    //        cout << get_elem(i) << endl;
+    //        abort();
+    //    }
+    //}
+    for (int i = 0; i < n_elems() && great_equal(this->get_elem(i)._phi[0], 0.);
+         i++) {
+        // build the point (8 points)
+        Point v[8];
+        double r1, r2, theta_1, theta_2, phi_1, phi_2;
+        r1 = this->get_elem(i)._r[0];
+        r2 = this->get_elem(i)._r[1];
+        theta_1 = this->get_elem(i)._theta[0];
+        theta_2 = this->get_elem(i)._theta[1];
+        phi_1 = this->get_elem(i)._phi[0];
+        phi_2 = this->get_elem(i)._phi[1];
+
+        v[0] = Point(r1, theta_1, phi_1);
+        v[1] = Point(r1, theta_2, phi_1);
+        v[2] = Point(r1, theta_2, phi_2);
+        v[3] = Point(r1, theta_1, phi_2);
+        v[4] = Point(r2, theta_1, phi_1);
+        v[5] = Point(r2, theta_2, phi_1);
+        v[6] = Point(r2, theta_2, phi_2);
+        v[7] = Point(r2, theta_1, phi_2);
+        for (int j = 0; j < 8; j++) {
+            v_set.insert(v[j]);
+        }
+        prism[i].clear();
+        for (int j = 0; j < 8; j++) {
+            prism[i].push_back(v[j]);
+        }
+    }
+    std::map<Point, unsigned int> v_id_map;
+    unsigned int counter = 0;
+    for (std::set<Point>::iterator it = v_set.begin(); it != v_set.end();
+         it++) {
+        v_id_map[(*it)] = counter;
+        counter++;
+    }
+    const unsigned int total_points = v_set.size();
+    const unsigned int total_cells = this->n_elems();
+    //----------------------------------------------------------------------
+    // Open the of stream
+    std::ofstream vtk_mesh(filename.c_str());
+    if (!vtk_mesh.good()) {
+        std::cerr << "Can not open file:\t" << filename + ".vtk" << std::endl;
+    } else {
+        // Parts 1-2-3, mandatory
+        vtk_mesh
+            << "# vtk DataFile Version 3.0\n"  // File version and identifier
+            // Header info, doublely cool data
+            << "Gravity inversion using tesseroids in spherical coordinate. "
+               "For convenience of slicing the model, the result is written in "
+               "this file using linear projection for latitudes and "
+               "longitudes.\n"
+            << "ASCII\n";  // ASCII data (not BINARY)
+
+        // Part 4, Geometry/topology, unstructured mesh
+        vtk_mesh << "DATASET UNSTRUCTURED_GRID\n";  // topography and geometry
+
+        // POINTS info (0-->n-1)
+        vtk_mesh << "\nPOINTS\t" << total_points << "\tdouble\n";
+        // Loop POINTS to write out coordinates
+        for (std::set<Point>::iterator it = v_set.begin(); it != v_set.end();
+             it++) {
+            long double x, y, z;
+            x = y = z = 0;
+            double r = (*it)(0);
+            double theta = (*it)(1);
+            double phi = (*it)(2);
+            x = phi * 180.0 / GS::PI - 180;
+            y = 90.0 - theta * 180 / GS::PI;
+            z = (r - reference_surface) / 1000.0;  // km
+            vtk_mesh << x << "\t"                  // x-coordinate
+                     << y << "\t"                  // y-coordinate
+                     << z << "\n";                 // z-coordinate
+        }
+
+        // CELL info (0-->m-1)
+        typedef std::map<Point, unsigned int>::iterator IT;
+
+        vtk_mesh << "\nCELLS\t" << total_cells << "\t" << total_cells * (8 + 1)
+                 << "\n";
+        // for (unsigned int i = 0; i < total_cells &&
+        // (this->get_elem(i)._phi[0] > 0.); i++)
+        for (unsigned int i = 0;
+             i < total_cells && great_equal(this->get_elem(i)._phi[0], 0.);
+             i++) {
+            if (!great_equal(this->get_elem(i)._phi[0], 0.)) {
+                cout << get_elem(i) << endl;
+            }
+            std::vector<Point>& T = prism[i];  // 8 vertex
+            assert(T.size() == 8);
+            unsigned int T_ID[8];
+            for (int j = 0; j < 8; j++) {
+                IT it = v_id_map.find(T[j]);
+                assert(it != v_id_map.end());
+                T_ID[j] = (*it).second;
+            }
+            vtk_mesh << (unsigned int)8 << "\t";
+            for (int j = 0; j < 8; j++) vtk_mesh << T_ID[j] << "\t";
+            vtk_mesh << "\n";
+        }
+
+        // CELL types (m)
+        vtk_mesh << "\nCELL_TYPES\t" << total_cells << "\n";
+        for (unsigned int i = 0; i < total_cells; i++) {
+            vtk_mesh << (unsigned int)12 << "\n";  // 12-hexahedron
             // figure 3 in vtk format file.
         }
 

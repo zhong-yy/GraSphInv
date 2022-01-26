@@ -1,0 +1,158 @@
+Using inversion parameters from configuration file: config
+
+Height of data from the reference surface is 50000
+Reference level is 6378137
+
+Number of observation points: 1681
+Range of the latitude: 20, 40
+Range of the longitude: 90, 110
+Range of the depth: 0, 400000
+The model has been written to vtk file: initial_mesh.vtk
+1 gravity field component is used. It is: 	g_r, 
+Read converted density model from ref_model
+The model has been written to NetCDF file: ref_model.nc
+The model has been written to vtk file: ref_model.vtk
+
+Start inversion
+1 gravity field component is used. It is: 	g_r, 
+
+Surface integral formulae is used in forward modeling, which is calculated by 4-th order Gauss-Legendre quadrature 
+
+Store a full sensitivity matrix, and use my own implementation of the lscg method
+
+alpha_s=0.0001
+alpha_r=0.1
+alpha_theta=1
+alpha_phi=1
+alpha_crg=1
+
+Maximum regularizaton parameter is 100
+Maximal number of regularization parameters (lambda) used for trials: 50
+
+
+Target misfit is 1
+Stagnation factor is 0.025 (the inversion stagnate when the relative difference of misfits at 2 consecutive iterations is smaller than this factor)
+
+Maximum number of iterations for the conjugate gradient method is 100.Tolerance value for the conjugate gradient method is 1e-06
+
+Maximum number of Gauss-Newton iterations: 9
+
+Model density contrast limits: [-300, 300]kg/m3
+
+The inversion mesh will be adaptively refined at every 1 iteration. The mesh may be refined for 7 times AT MOST
+For each time of refinement, 10% of cells are marked for refinement. BUT the exact number of cells that are refined might not be this number owing to the some refinement constraints used in the algorithm (e.g. limit of cell sizes, and the difference in the levels of adjacent elements in the tree must not exceed 1).
+
+Cells whose sizes are smaller than 0.5(deg in latitude), 0.5(deg in longitude), 20000(m in depth) cannot be refined.
+
+Will the inversion model be recorded at each iteration? No
+
+Use cross-gradient constraint model? No
+Use petrophysical constraint model? Yes
+
+The 1 th Gauss-Newton Iteration:
+Number of elements: 500
+The sizes of the smallest cell along each dimension:
+latitude 2 degrees, longitude 2 degrees, depth 80000 m
+  #0 lambda=100, misfit=7.620598 (CG iterations: 12, error: 9.125521e-07)
+  #1 lambda=70, misfit=7.123222 (CG iterations: 13, error: 9.895411e-07)
+  #2 lambda=49, misfit=6.592937 (CG iterations: 14, error: 4.835203e-07)
+  #3 lambda=34.3, misfit=6.037959 (CG iterations: 15, error: 4.156357e-07)
+  #4 lambda=24.01, misfit=5.469752 (CG iterations: 16, error: 3.62759e-07)
+  #5 lambda=16.807, misfit=4.902853 (CG iterations: 17, error: 5.3198e-07)
+  #6 lambda=11.7649, misfit=4.352923 (CG iterations: 19, error: 2.860978e-07)
+  #7 lambda=8.23543, misfit=3.834345 (CG iterations: 21, error: 2.318379e-07)
+  #8 lambda=5.764801, misfit=3.357581 (CG iterations: 22, error: 9.716389e-07)
+  #9 lambda=4.035361, misfit=2.929613 (CG iterations: 24, error: 7.716435e-07)
+  #10 lambda=2.824752, misfit=2.554716 (CG iterations: 27, error: 4.836103e-07)
+  #11 lambda=1.977327, misfit=2.233645 (CG iterations: 29, error: 9.540852e-07)
+  #12 lambda=1.384129, misfit=1.967477 (CG iterations: 32, error: 7.685954e-07)
+  #13 lambda=0.9688901, misfit=1.754226 (CG iterations: 35, error: 4.847787e-07)
+  #14 lambda=0.6782231, misfit=1.591634 (CG iterations: 39, error: 8.207454e-07)
+  #15 lambda=0.4747562, misfit=1.473085 (CG iterations: 42, error: 8.710669e-07)
+  #16 lambda=0.3323293, misfit=1.390806 (CG iterations: 42, error: 9.456447e-07)
+  #17 lambda=0.2326305, misfit=1.335077 (CG iterations: 45, error: 7.581301e-07)
+  #18 lambda=0.1628414, misfit=1.298699 (CG iterations: 50, error: 8.282474e-07)
+  #19 lambda=0.113989, misfit=1.273982 (CG iterations: 54, error: 9.279661e-07)
+  #20 lambda=0.07979227, misfit=1.258347 (CG iterations: 49, error: 8.79889e-07)
+  Misfit stagnates, go to next Gauss-Newton iteration.
+
+1 iterations have passed since last refinement, refine mesh ...
+1st refinement.
+50 elements are refined
+Finished refinement
+Initialize Ws
+Initialize Wtheta
+Initialize Wphi
+Initialize Wr
+The 2 th Gauss-Newton Iteration:
+Number of elements: 850
+The sizes of the smallest cell along each dimension:
+latitude 1 degrees, longitude 1 degrees, depth 40000 m
+  #0 lambda=100, misfit=7.773334 (CG iterations: 31, error: 7.480111e-07)
+  #1 lambda=70, misfit=7.256677 (CG iterations: 32, error: 7.159838e-07)
+  #2 lambda=49, misfit=6.705278 (CG iterations: 35, error: 3.931799e-07)
+  #3 lambda=34.3, misfit=6.127697 (CG iterations: 37, error: 6.691717e-07)
+  #4 lambda=24.01, misfit=5.535426 (CG iterations: 39, error: 9.044977e-07)
+  #5 lambda=16.807, misfit=4.943796 (CG iterations: 43, error: 8.405142e-07)
+  #6 lambda=11.7649, misfit=4.369069 (CG iterations: 49, error: 4.187673e-07)
+  #7 lambda=8.23543, misfit=3.825693 (CG iterations: 52, error: 7.933453e-07)
+  #8 lambda=5.764801, misfit=3.325679 (CG iterations: 57, error: 7.115039e-07)
+  #9 lambda=4.035361, misfit=2.876328 (CG iterations: 66, error: 6.137865e-07)
+  #10 lambda=2.824752, misfit=2.481231 (CG iterations: 73, error: 6.284952e-07)
+  #11 lambda=1.977327, misfit=2.142053 (CG iterations: 84, error: 5.021889e-07)
+  #12 lambda=1.384129, misfit=1.858954 (CG iterations: 95, error: 8.507474e-07)
+  #13 lambda=0.9688901, misfit=1.630517 (CG iterations: 100, error: 6.088554e-06)
+  #14 lambda=0.6782231, misfit=1.453216 (CG iterations: 100, error: 4.841935e-05)
+  #15 lambda=0.4747562, misfit=1.321633 (CG iterations: 100, error: 3.571046e-05)
+  #16 lambda=0.3323293, misfit=1.226865 (CG iterations: 100, error: 0.0001975636)
+  #17 lambda=0.2326305, misfit=1.161582 (CG iterations: 100, error: 0.000464633)
+  #18 lambda=0.1628414, misfit=1.116834 (CG iterations: 100, error: 0.001018473)
+  #19 lambda=0.113989, misfit=1.081776 (CG iterations: 100, error: 0.001234927)
+  #20 lambda=0.07979227, misfit=1.056019 (CG iterations: 100, error: 0.0006711564)
+  #21 lambda=0.05585459, misfit=1.033578 (CG iterations: 100, error: 0.009255029)
+  Misfit stagnates, go to next Gauss-Newton iteration.
+
+1 iterations have passed since last refinement, refine mesh ...
+2nd refinement.
+98 elements are refined
+Finished refinement
+Initialize Ws
+Initialize Wtheta
+Initialize Wphi
+Initialize Wr
+The 3 th Gauss-Newton Iteration:
+Number of elements: 1536
+The sizes of the smallest cell along each dimension:
+latitude 0.5 degrees, longitude 0.5 degrees, depth 20000 m
+  #0 lambda=100, misfit=7.801533 (CG iterations: 62, error: 5.595503e-07)
+  #1 lambda=70, misfit=7.281293 (CG iterations: 63, error: 7.187367e-07)
+  #2 lambda=49, misfit=6.725392 (CG iterations: 67, error: 8.67898e-07)
+  #3 lambda=34.3, misfit=6.142075 (CG iterations: 73, error: 3.947912e-07)
+  #4 lambda=24.01, misfit=5.543449 (CG iterations: 75, error: 8.587568e-07)
+  #5 lambda=16.807, misfit=4.944222 (CG iterations: 81, error: 7.70409e-07)
+  #6 lambda=11.7649, misfit=4.360774 (CG iterations: 91, error: 9.772409e-07)
+  #7 lambda=8.23543, misfit=3.808168 (CG iterations: 100, error: 9.62836e-07)
+  #8 lambda=5.764801, misfit=3.298309 (CG iterations: 100, error: 4.776492e-06)
+  #9 lambda=4.035361, misfit=2.837517 (CG iterations: 100, error: 1.263364e-05)
+  #10 lambda=2.824752, misfit=2.430026 (CG iterations: 100, error: 6.078289e-05)
+  #11 lambda=1.977327, misfit=2.078657 (CG iterations: 100, error: 9.733857e-05)
+  #12 lambda=1.384129, misfit=1.785037 (CG iterations: 100, error: 0.0004219907)
+  #13 lambda=0.9688901, misfit=1.547659 (CG iterations: 100, error: 0.001779011)
+  #14 lambda=0.6782231, misfit=1.36462 (CG iterations: 100, error: 0.001696533)
+  #15 lambda=0.4747562, misfit=1.228786 (CG iterations: 100, error: 0.004776508)
+  #16 lambda=0.3323293, misfit=1.131884 (CG iterations: 100, error: 0.008047065)
+  #17 lambda=0.2326305, misfit=1.069922 (CG iterations: 100, error: 0.01212679)
+  #18 lambda=0.1628414, misfit=1.028785 (CG iterations: 100, error: 0.00252912)
+  #19 lambda=0.113989, misfit=1.001666 (CG iterations: 100, error: 0.01044182)
+  #20 lambda=0.07979227, misfit=0.9816694 (CG iterations: 100, error: 0.01347789)
+Stop iteration, because the target misift has been achieved
+Gauss-Newton iteration number:3
+Lambda=0.05585459, Misfit=0.9816694
+Running time of inversion:15.35301s
+Inversion completed
+Writing the inversion model into file ...
+The model has been written to vtk file: ada_result_pet.vtk
+The model has been written to text file: ada_result_pet.txt
+x
+The model has been written to NetCDF file: ada_result_pet.nc
+Writing predicted data ...

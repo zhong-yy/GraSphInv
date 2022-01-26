@@ -1,0 +1,72 @@
+Using inversion parameters from configuration file: config
+
+Height of data from the reference surface is 50000
+Reference level is 6378137
+
+Number of observation points: 1681
+Range of the latitude: 20, 40
+Range of the longitude: 90, 110
+Range of the depth: 0, 400000
+The model has been written to vtk file: initial_mesh.vtk
+1 gravity field component is used. It is: 	g_r, 
+Read cross-gradient constraint model from crg_model
+The model has been written to NetCDF file: crg_model.nc
+The model has been written to vtk file: crg_model.vtk
+
+Start inversion
+1 gravity field component is used. It is: 	g_r, 
+
+Surface integral formulae is used in forward modeling, which is calculated by 4-th order Gauss-Legendre quadrature 
+
+Store a full sensitivity matrix, and use my own implementation of the lscg method
+
+alpha_s=1e-08
+alpha_r=0.1
+alpha_theta=1
+alpha_phi=1
+alpha_crg=10
+
+Maximum regularizaton parameter is 100
+Maximal number of regularization parameters (lambda) used for trials: 50
+
+
+Target misfit is 1
+Stagnation factor is 0.025 (the inversion stagnate when the relative difference of misfits at 2 consecutive iterations is smaller than this factor)
+
+Maximum number of iterations for the conjugate gradient method is 300.Tolerance value for the conjugate gradient method is 1e-06
+
+Maximum number of Gauss-Newton iterations: 5
+
+Model density contrast limits: [-300, 300]kg/m3
+
+The inversion mesh will not be refined.
+
+Will the inversion model be recorded at each iteration? No
+
+Use cross-gradient constraint model? Yes
+Use petrophysical constraint model? No
+
+Cross gradient constraint is used
+The 1 th Gauss-Newton Iteration:
+Number of elements: 32000
+The sizes of the smallest cell along each dimension:
+latitude 0.5 degrees, longitude 0.5 degrees, depth 20000 m
+  #0 lambda=100, misfit=1.608597 (CG iterations: 300, error: 2.429615e-05)
+  #1 lambda=70, misfit=1.439252 (CG iterations: 300, error: 3.353895e-05)
+  #2 lambda=49, misfit=1.301254 (CG iterations: 300, error: 2.330541e-05)
+  #3 lambda=34.3, misfit=1.197603 (CG iterations: 300, error: 2.35608e-05)
+  #4 lambda=24.01, misfit=1.113514 (CG iterations: 300, error: 2.52747e-05)
+  #5 lambda=16.807, misfit=1.056727 (CG iterations: 300, error: 2.51532e-05)
+  #6 lambda=11.7649, misfit=1.012735 (CG iterations: 300, error: 2.365075e-05)
+  #7 lambda=8.23543, misfit=0.9790344 (CG iterations: 300, error: 2.719245e-05)
+Stop iteration, because the target misift has been achieved
+Gauss-Newton iteration number:1
+Lambda=5.764801, Misfit=0.9790344
+Running time of inversion:275.5362s
+Inversion completed
+Writing the inversion model into file ...
+The model has been written to vtk file: non_ada_result_crg.vtk
+The model has been written to text file: non_ada_result_crg.txt
+x
+The model has been written to NetCDF file: non_ada_result_crg.nc
+Writing predicted data ...

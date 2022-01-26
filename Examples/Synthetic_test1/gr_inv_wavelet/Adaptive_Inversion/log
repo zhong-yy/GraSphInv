@@ -1,0 +1,138 @@
+Using inversion parameters from configuration file: config
+
+Height of data from the reference surface is 50000
+Reference level is 6378137
+
+Number of observation points: 1681
+Range of the latitude: 20, 40
+Range of the longitude: 90, 110
+Range of the depth: 0, 400000
+The model has been written to vtk file: initial_mesh.vtk
+1 gravity field component is used. It is: 	g_r, 
+
+Start inversion
+1 gravity field component is used. It is: 	g_r, 
+
+Surface integral formulae is used in forward modeling, which is calculated by 4-th order Gauss-Legendre quadrature 
+
+Use the wavelet transform to compress the sensitivity matrix, and use my own implementation of the lscg method
+
+alpha_s=1e-08
+alpha_r=0.1
+alpha_theta=1
+alpha_phi=1
+alpha_crg=0
+
+Maximum regularizaton parameter is 100
+Maximal number of regularization parameters (lambda) used for trials: 50
+
+
+Target misfit is 1
+Stagnation factor is 0.025 (the inversion stagnate when the relative difference of misfits at 2 consecutive iterations is smaller than this factor)
+
+Maximum number of iterations for the conjugate gradient method is 100.Tolerance value for the conjugate gradient method is 1e-06
+
+Maximum number of Gauss-Newton iterations: 9
+
+Model density contrast limits: [-300, 300]kg/m3
+
+The inversion mesh will be adaptively refined at every 1 iteration. The mesh may be refined for 8 times AT MOST
+For each time of refinement, 10% of cells are marked for refinement. BUT the exact number of cells that are refined might not be this number owing to the some refinement constraints used in the algorithm (e.g. limit of cell sizes, and the difference in the levels of adjacent elements in the tree must not exceed 1).
+
+Cells whose sizes are smaller than 0.5(deg in latitude), 0.5(deg in longitude), 20000(m in depth) cannot be refined.
+
+Will the inversion model be recorded at each iteration? Yes
+
+Use cross-gradient constraint model? No
+Use petrophysical constraint model? No
+
+Relative threshold for wavelet compression: 0.005
+n_dy=512
+The number of elements in the sensitivity matrix: 840500, the number of non-zero elements: 252650
+Compression ratio: 3.326737
+The 1 th Gauss-Newton Iteration:
+Number of elements: 500
+The sizes of the smallest cell along each dimension:
+latitude 2 degrees, longitude 2 degrees, depth 80000 m
+  #0 lambda=100, misfit=1.698551 (CG iterations: 47, error: 6.660497e-07)
+  #1 lambda=70, misfit=1.564829 (CG iterations: 46, error: 8.720773e-07)
+  #2 lambda=49, misfit=1.462179 (CG iterations: 44, error: 8.423647e-07)
+  #3 lambda=34.3, misfit=1.389134 (CG iterations: 49, error: 6.217258e-07)
+  #4 lambda=24.01, misfit=1.341272 (CG iterations: 45, error: 8.531115e-07)
+  #5 lambda=16.807, misfit=1.306362 (CG iterations: 50, error: 8.825833e-07)
+  #6 lambda=11.7649, misfit=1.285061 (CG iterations: 43, error: 7.953433e-07)
+  #7 lambda=8.23543, misfit=1.268197 (CG iterations: 46, error: 6.55204e-07)
+  Misfit stagnates, go to next Gauss-Newton iteration.
+The model has been written to NetCDF file: result_at_0.nc
+The model has been written to vtk file: result_at_0.vtk
+
+1 iterations have passed since last refinement, refine mesh ...
+1st refinement.
+50 elements are refined
+Relative threshold for wavelet compression: 0.005
+n_dy=1024
+The number of elements in the sensitivity matrix: 1428850, the number of non-zero elements: 462394
+Compression ratio: 3.090114
+Finished refinement
+Initialize Ws
+Initialize Wtheta
+Initialize Wphi
+Initialize Wr
+The 2 th Gauss-Newton Iteration:
+Number of elements: 850
+The sizes of the smallest cell along each dimension:
+latitude 1 degrees, longitude 1 degrees, depth 40000 m
+  #0 lambda=100, misfit=1.688349 (CG iterations: 100, error: 8.129051e-05)
+  #1 lambda=70, misfit=1.533414 (CG iterations: 100, error: 0.0001285301)
+  #2 lambda=49, misfit=1.408313 (CG iterations: 100, error: 0.0001993518)
+  #3 lambda=34.3, misfit=1.312412 (CG iterations: 100, error: 0.0004232113)
+  #4 lambda=24.01, misfit=1.238815 (CG iterations: 100, error: 0.000305007)
+  #5 lambda=16.807, misfit=1.181182 (CG iterations: 100, error: 0.001269849)
+  #6 lambda=11.7649, misfit=1.136806 (CG iterations: 100, error: 0.0001442422)
+  #7 lambda=8.23543, misfit=1.104286 (CG iterations: 100, error: 0.000218553)
+  #8 lambda=5.764801, misfit=1.076573 (CG iterations: 100, error: 0.0003031702)
+  #9 lambda=4.035361, misfit=1.056493 (CG iterations: 100, error: 0.0002397427)
+  #10 lambda=2.824752, misfit=1.039906 (CG iterations: 100, error: 0.0001408543)
+  Misfit stagnates, go to next Gauss-Newton iteration.
+The model has been written to NetCDF file: result_at_1.nc
+The model has been written to vtk file: result_at_1.vtk
+
+1 iterations have passed since last refinement, refine mesh ...
+2nd refinement.
+90 elements are refined
+Relative threshold for wavelet compression: 0.005
+n_dy=2048
+The number of elements in the sensitivity matrix: 2487880, the number of non-zero elements: 707511
+Compression ratio: 3.516383
+Finished refinement
+Initialize Ws
+Initialize Wtheta
+Initialize Wphi
+Initialize Wr
+The 3 th Gauss-Newton Iteration:
+Number of elements: 1480
+The sizes of the smallest cell along each dimension:
+latitude 0.5 degrees, longitude 0.5 degrees, depth 20000 m
+  #0 lambda=100, misfit=1.616045 (CG iterations: 100, error: 0.0008761036)
+  #1 lambda=70, misfit=1.448024 (CG iterations: 100, error: 0.001148461)
+  #2 lambda=49, misfit=1.318782 (CG iterations: 100, error: 0.002598967)
+  #3 lambda=34.3, misfit=1.218139 (CG iterations: 100, error: 0.0008602241)
+  #4 lambda=24.01, misfit=1.146831 (CG iterations: 100, error: 0.000460363)
+  #5 lambda=16.807, misfit=1.089304 (CG iterations: 100, error: 0.001598365)
+  #6 lambda=11.7649, misfit=1.047272 (CG iterations: 100, error: 0.0007344429)
+  #7 lambda=8.23543, misfit=1.021263 (CG iterations: 100, error: 0.001414516)
+  #8 lambda=5.764801, misfit=1.001488 (CG iterations: 100, error: 0.0008579691)
+  #9 lambda=4.035361, misfit=0.9854843 (CG iterations: 100, error: 0.003730038)
+  Misfit stagnates, go to next Gauss-Newton iteration.
+The model has been written to NetCDF file: result_at_2.nc
+The model has been written to vtk file: result_at_2.vtk
+Stop iteration, because the target misift has been achieved
+Gauss-Newton iteration number:3
+Lambda=4.035361, Misfit=0.9854843
+Running time of inversion:17.41021s
+Inversion completed
+Writing the inversion model into file ...
+The model has been written to vtk file: ada_result_wavelet.vtk
+The model has been written to text file: ada_result_wavelet.txt
+The model has been written to NetCDF file: ada_result_wavelet.nc
+Writing predicted data ...

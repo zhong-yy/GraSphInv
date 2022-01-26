@@ -1,0 +1,71 @@
+Using inversion parameters from configuration file: config
+
+Height of data from the reference surface is 50000
+Reference level is 6378137
+
+Number of observation points: 1681
+Range of the latitude: 20, 40
+Range of the longitude: 90, 110
+Range of the depth: 0, 400000
+The model has been written to vtk file: initial_mesh.vtk
+1 gravity field component is used. It is: 	g_r, 
+
+Start inversion
+1 gravity field component is used. It is: 	g_r, 
+
+Surface integral formulae is used in forward modeling, which is calculated by 4-th order Gauss-Legendre quadrature 
+
+Use the wavelet transform to compress the sensitivity matrix, and use my own implementation of the lscg method
+
+alpha_s=1e-08
+alpha_r=0.1
+alpha_theta=1
+alpha_phi=1
+alpha_crg=0
+
+Maximum regularizaton parameter is 100
+Maximal number of regularization parameters (lambda) used for trials: 50
+
+
+Target misfit is 1
+Stagnation factor is 0.025 (the inversion stagnate when the relative difference of misfits at 2 consecutive iterations is smaller than this factor)
+
+Maximum number of iterations for the conjugate gradient method is 100.Tolerance value for the conjugate gradient method is 1e-06
+
+Maximum number of Gauss-Newton iterations: 5
+
+Model density contrast limits: [-300, 300]kg/m3
+
+The inversion mesh will not be refined.
+
+Will the inversion model be recorded at each iteration? No
+
+Use cross-gradient constraint model? No
+Use petrophysical constraint model? No
+
+Relative threshold for wavelet compression: 0.005
+n_dy=32768
+The number of elements in the sensitivity matrix: 53792000, the number of non-zero elements: 1525148
+Compression ratio: 35.27002
+The 1 th Gauss-Newton Iteration:
+Number of elements: 32000
+The sizes of the smallest cell along each dimension:
+latitude 0.5 degrees, longitude 0.5 degrees, depth 20000 m
+  #0 lambda=100, misfit=1.587557 (CG iterations: 100, error: 1.539427e-06)
+  #1 lambda=70, misfit=1.421541 (CG iterations: 92, error: 9.823685e-07)
+  #2 lambda=49, misfit=1.287876 (CG iterations: 80, error: 8.621e-07)
+  #3 lambda=34.3, misfit=1.184414 (CG iterations: 69, error: 9.634406e-07)
+  #4 lambda=24.01, misfit=1.105853 (CG iterations: 65, error: 8.624783e-07)
+  #5 lambda=16.807, misfit=1.050104 (CG iterations: 56, error: 9.402186e-07)
+  #6 lambda=11.7649, misfit=1.007825 (CG iterations: 56, error: 9.69049e-07)
+  #7 lambda=8.23543, misfit=0.9764768 (CG iterations: 56, error: 8.369368e-07)
+Stop iteration, because the target misift has been achieved
+Gauss-Newton iteration number:1
+Lambda=5.764801, Misfit=0.9764768
+Running time of inversion:103.2142s
+Inversion completed
+Writing the inversion model into file ...
+The model has been written to vtk file: non_ada_result_wavelet.vtk
+The model has been written to text file: non_ada_result_wavelet.txt
+The model has been written to NetCDF file: non_ada_result_wavelet.nc
+Writing predicted data ...

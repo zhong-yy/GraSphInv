@@ -1,8 +1,8 @@
-1. Gravity data
+1. **Gravity data**
 
 Gravity data extracted from EIGEN-6C4 are in the folder Eigen6C4/GrafLab_output
 
-2. Data processing
+2. **Data processing**
 
 (1) Bouguer anomaly
 
@@ -10,7 +10,7 @@ Eigen6C4 contains the Bouguer gravity anomaly, which is processed by the python 
 
 (2) Crustal correction
 
-The folder Crust_Correction contains corrected anomalies.  cal.sh is a script that runs the correction program. In the file cal.sh, `RemoveCrustalEffect` is the name of the binary executable 
+The folder **Crust_Correction** contains corrected anomalies.  cal.sh is a script that runs the correction program. In the file cal.sh, `RemoveCrustalEffect` is the name of the binary executable 
 
 - mantle_g_r is the gravity anomaly after removing all effects of sedimentary layers, crystalline crust layers, and Moho. 
 
@@ -20,6 +20,11 @@ The folder Crust_Correction contains corrected anomalies.  cal.sh is a script th
 
 (3) Compare processed anomalies from EIGEN-6C4 and EGM2008
 
-Enter the folder CompareEGM2008, run the script EIGEN_EGM2.sh
+Enter the folder **CompareEGM2008**, run the script EIGEN_EGM2.sh:
+
+```
+bash EIGEN_EGM2.sh
+```
+
 
 

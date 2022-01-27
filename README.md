@@ -1,4 +1,5 @@
 # GraSphInv
+[![DOI](https://zenodo.org/badge/444264186.svg)](https://zenodo.org/badge/latestdoi/444264186)
 
 ## 1 Installation
 

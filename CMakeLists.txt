@@ -97,6 +97,12 @@ target_link_libraries(Synthetic_data
     PRIVATE
     Inversion_objs
     )
+add_executable(Synthetic_data_ggt
+    src/programs/Synthetic_data_ggt.cpp)
+target_link_libraries(Synthetic_data_ggt
+    PRIVATE
+    Inversion_objs
+    )
 
 add_executable(RemoveCrustalEffect
     src/programs/RemoveCrustalEffect.cpp)

@@ -1,6 +1,6 @@
 model=../gr_inv_pet.nc
 extract_slice_tool=Extract_slice
-topo=../../tibet.nc
+topo=./tibet.nc
 if [ ! -f "$topo" ]; then
     echo "Downloading topography data"
     gmt grdcut @earth_relief_15s.grd -R64/112/19/49 -G$topo

@@ -202,13 +202,14 @@ void Fwd::GT_vec_mul(const VectorXd& vec, VectorXd& product) const {
     product.resize(Nm);
     if (use_wavelet) {
         vector<double> product_wavelet(n_dy_for_wavelet, 0);
-#pragma omp parallel for
+        //#pragma omp parallel for
         for (int i = 0; i < Nd; i++) {
             int nnz_of_current_row = 0;
             nnz_of_current_row = comp_col_ids[i].size();
+#pragma omp parallel for
             for (int j = 0; j < nnz_of_current_row; j++) {
                 int id = comp_col_ids[i][j];
-#pragma omp atomic
+                //#pragma omp atomic
                 product_wavelet[id] += comp_G_coeffs[i][j] * vec(i);
             }
         }
@@ -299,11 +300,14 @@ void Fwd::compute_G_wavelet() {
          << this->compression_threshold << endl;
     vector<vector<double>> sensitivity_data(basic_field_index.size());
     for (int ii = 0; ii < sensitivity_data.size(); ii++) {
-        sensitivity_data[ii].resize(Nm, 0);
+        sensitivity_data[ii].resize(Nm);
+        for (int jj = 0; jj < Nm; jj++) {
+            sensitivity_data[ii][jj] = 0.0;
+        }
     }
 #pragma omp parallel for firstprivate(sensitivity_data)
     for (int i = 0; i < N_obs; i++) {
-        for (int j = 0; j < Nm; j++) {
+        for (int j = 0; j < Nm; j++) {  // here j denotes the reordered index
             GravityField gra(GLQ_order);
             vector<double> field;
             int ro_id = mesh.get_reordered_id(j);

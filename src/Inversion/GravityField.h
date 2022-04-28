@@ -33,11 +33,10 @@ class GravityField {
         const Point &x, Tesseroid *tess, double rho, std::vector<double> &field,
         std::bitset<10> flag = std::bitset<10>(~0ULL));
 
-    // TODO:check
+    // TODO
     void field_for_a_tesseroid_adapt(
         const Point &x, Tesseroid *tess, double rho, std::vector<double> &field,
         std::bitset<10> flag = std::bitset<10>(~0ULL));
-
 
    private:
     // Gauss Rule used by the Tesseroid library

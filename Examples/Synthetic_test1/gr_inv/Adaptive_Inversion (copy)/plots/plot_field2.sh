@@ -49,4 +49,4 @@ rm $OBSERVED_FIELD"_grd"
 rm $PREDICTED_FIELD"_gmt_format"
 rm $PREDICTED_FIELD"_grd"
 rm residual_grd
-#rm residual_gmt_format
+rm residual_gmt_format

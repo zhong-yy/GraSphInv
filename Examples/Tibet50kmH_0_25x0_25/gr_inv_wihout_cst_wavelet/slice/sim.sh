@@ -52,7 +52,7 @@ for j in $loop; do
     	#gawk -v PREC=100 -v dep=${z} '{print $1, $2, $3, dep}' track$j.data  >> cross_section$j.txt
         gawk -v PREC=100 -v dep=${z} '{printf "%20.6f %20.6f %20.6f %20.6f\n", $1, $2, $3, dep}' track$j.data  >> cross_section$j.txt
     done < zpoints.txt
-    #python get_profile.py $model cross_section$j.txt track$j.profile
+    python get_profile.py $model cross_section$j.txt track$j.profile
 
 	gmt project -C${start[$j]} -E${end[$j]} -G10 -Q -V >track_e$j.data #for elevation
 	R_interp[j]=$(gmt gmtinfo -i2 -C track$j.data | gawk '{print $1"/"$2}')"/$dep0/$dep1"
@@ -61,7 +61,7 @@ for j in $loop; do
 	gmt surface track$j.profile -R${R_interp[j]} -I50/20 -V -Gslice$j
 	gmt surface $dir_comparison/track$j.profile -R${R_interp[j]} -I50/20 -V -Gslice_cst$j
 
-	#python cal_sim.py track$j.profile $dir_comparison/track$j.profile sim$j.profile
+	python cal_sim.py track$j.profile $dir_comparison/track$j.profile sim$j.profile
 	
 	gmt surface sim$j.profile -R${R_interp[j]} -I50/20 -V -Gsim$j
 
@@ -82,7 +82,7 @@ done
 contours=-20,20
 lb_d=2c
 contour_pen=0.5p,white,-
-gmt begin vslice_without_constraints jpg,eps E300
+gmt begin vslice_without_constraints jpg,pdf E300
 gmt set FONT 9p
 gmt set MAP_FRAME_TYPE plain
 gmt set MAP_FRAME_PEN 1.2p,black
@@ -95,7 +95,7 @@ gmt makecpt -Cwysiwyg -T-80/80/0.1 -Z -Ic -D -H >mycpt.cpt
 gmt basemap -Jx0.005/-0.005 -R${img_Region[0]} -Bxaf -Bya200f100g100+l"Depth (km)" -BWtsr
 gmt grdimage slice0 -E300 -Q -Cmycpt.cpt
 #gmt grdcontour slice0  -A$contours+f8p -Gd$lb_d -W$contour_pen #-C$contours
-gmt plot moho0 -W0.5p,black,dashed -Gwhite -t30
+gmt plot moho0 -W0.5p,black,dashed -Gwhite #-t30
 gmt plot moho0 -Wthick,black,dashed
 
 #gmt plot LAB0 -Wthick,RED2,dashed
@@ -130,7 +130,7 @@ Rb=($(gmt gmtinfo -I- -C elevation1))
 gmt basemap -Jx0.005/-0.005 -R${img_Region[1]} -Bxaf -Bya200f100g100+l"Depth (km)" -BWtsr -Y-5.25c
 gmt grdimage slice1 -E300 -Q -Cmycpt.cpt
 #gmt grdcontour slice1  -A$contours+f8p -Gd$lb_d #-C$contours
-gmt plot moho1 -W0.5p,black,dashed -Gwhite -t30
+gmt plot moho1 -W0.5p,black,dashed -Gwhite #-t30
 gmt plot moho1 -Wthick,black,dashed
 
 #gmt plot LAB1 -Wthick,RED2,dashed
@@ -187,7 +187,7 @@ echo 1250 9.1 8p 0 JRS | gmt text -F+f+A
 gmt basemap -Jx0.005/-0.005 -R${img_Region[3]} -Bxaf+l"Distance (km)" -Bya200f100g100+l"Depth (km)" -BWtSr -Y-5.25c
 gmt grdimage slice3 -E300 -Q -Cmycpt.cpt
 #gmt grdcontour slice3  -A$contours+f8p -Gd$lb_d #-C$contours
-gmt plot moho3 -W0.5p,black,dashed -Gwhite -t30
+gmt plot moho3 -W0.5p,black,dashed -Gwhite #-t30
 gmt plot moho3 -Wthick,black,dashed
 
 #gmt plot LAB3 -Wthick,RED2,dashed
@@ -215,7 +215,7 @@ echo 1129.64 9.2 8p 0 BNS | gmt text -F+f+A
 gmt basemap -Jx0.005/-0.005 -R${img_Region[0]} -Bxaf -Bya200f100+l"Depth (km)" -Bltsr -X7.2c -Y7.75c
 gmt grdimage slice_cst0 -E300 -Q -Cmycpt.cpt
 #gmt grdcontour slice_cst0 -A$contours+f8p -Gd$lb_d 
-gmt plot moho0 -W0.5p,black,dashed -Gwhite -t30
+gmt plot moho0 -W0.5p,black,dashed -Gwhite #-t30
 gmt plot moho0 -Wthick,black,dashed
 
 #gmt plot LAB0 -Wthick,RED2,dashed
@@ -247,7 +247,7 @@ Rb=($(gmt gmtinfo -I- -C elevation1))
 gmt basemap -Jx0.005/-0.005 -R${img_Region[1]} -Bxaf -Bya200f100+l"Depth (km)" -Bltsr -Y-5.25c
 gmt grdimage slice_cst1 -E300 -Q -Cmycpt.cpt
 #gmt grdcontour slice_cst1 -A$contours+f8p -Gd$lb_d 
-gmt plot moho1 -W0.5p,black,dashed -Gwhite -t30
+gmt plot moho1 -W0.5p,black,dashed -Gwhite #-t30
 gmt plot moho1 -Wthick,black,dashed
 
 #gmt plot LAB1 -Wthick,RED2,dashed
@@ -273,7 +273,7 @@ Rc=($(gmt gmtinfo -I- -C elevation2))
 gmt basemap -Jx0.005/-0.005 -R${img_Region[2]} -Bxaf -Bya200f100+l"Depth (km)" -Bltsr -Y-5.25c
 gmt grdimage slice_cst2 -E300 -Q -Cmycpt.cpt
 #gmt grdcontour slice_cst2 -A$contours+f8p -Gd$lb_d 
-gmt plot moho2 -W0.5p,black,dashed -Gwhite -t30
+gmt plot moho2 -W0.5p,black,dashed -Gwhite #-t30
 gmt plot moho2 -Wthick,black,dashed
 
 #gmt plot LAB2 -Wthick,RED2,dashed
@@ -296,7 +296,7 @@ echo 1250 9.1 8p 0 JRS | gmt text -F+f+A
 gmt basemap -Jx0.005/-0.005 -R${img_Region[3]} -Bxaf+l"Distance (km)" -Bya200f100+l"Depth (km)" -BltSr -Y-5.25c
 gmt grdimage slice_cst3 -E300 -Q -Cmycpt.cpt
 #gmt grdcontour slice_cst3 -A$contours+f8p,white -Gd$lb_d 
-gmt plot moho3 -W0.5p,black,dashed -Gwhite -t30
+gmt plot moho3 -W0.5p,black,dashed -Gwhite #-t30
 gmt plot moho3 -Wthick,black,dashed
 
 #gmt plot LAB3 -Wthick,RED2,dashed
@@ -320,11 +320,11 @@ echo 1129.64 9.2 8p 0 BNS | gmt text -F+f+A
 gmt makecpt -Cdevon -T0/1/0.01 -Ic -D -H >mycpt.cpt
 gmt basemap -Jx0.005/-0.005 -R${img_Region[0]} -Bxaf -Bya200f100+l"Depth (km)" -Bltse -X7.2c -Y7.75c
 gmt grdimage sim0 -E300 -Q -Cmycpt.cpt
-gmt plot moho0 -W0.5p,black,dashed -Gwhite -t30
+gmt plot moho0 -W0.5p,black,dashed -Gwhite #-t30
 gmt plot moho0 -Wthick,black,dashed
 
 #gmt plot LAB0 -Wthick,RED2,dashed
-echo "Squared cross-gradient values" | gmt text -F+cTC+f10p,1 -D0.0c/1.65c -N
+echo "Squared normalized cross-gradient values" | gmt text -F+cTC+f11p,1 -D0.0c/1.65c -N
 Ra=($(gmt gmtinfo -I- -C elevation0))
 ele0=${Ra[2]}
 ele1=$(echo "${Ra[3]}+2.2" | bc)
@@ -350,7 +350,7 @@ echo 1250 3.2 8p 0 Tarim | gmt text -F+f+A
 Rb=($(gmt gmtinfo -I- -C elevation1))
 gmt basemap -Jx0.005/-0.005 -R${img_Region[1]} -Bxaf -Bya200f100+l"Depth (km)" -Bltse -Y-5.25c
 gmt grdimage sim1 -E300 -Q -Cmycpt.cpt
-gmt plot moho1 -W0.5p,black,dashed -Gwhite -t30
+gmt plot moho1 -W0.5p,black,dashed -Gwhite #-t30
 gmt plot moho1 -Wthick,black,dashed
 
 #gmt plot LAB1 -Wthick,RED2,dashed
@@ -375,7 +375,7 @@ echo 1097 9. 8p 0 JRS | gmt text -F+f+A
 Rc=($(gmt gmtinfo -I- -C elevation2))
 gmt basemap -Jx0.005/-0.005 -R${img_Region[2]} -Bxaf -Bya200f100+l"Depth (km)" -Bltse -Y-5.25c
 gmt grdimage sim2 -E300 -Q -Cmycpt.cpt
-gmt plot moho2 -W0.5p,black,dashed -Gwhite -t30
+gmt plot moho2 -W0.5p,black,dashed -Gwhite #-t30
 gmt plot moho2 -Wthick,black,dashed
 
 #gmt plot LAB2 -Wthick,RED2,dashed
@@ -397,7 +397,7 @@ echo 1250 9.1 8p 0 JRS | gmt text -F+f+A
 #D3
 gmt basemap -Jx0.005/-0.005 -R${img_Region[3]} -Bxaf+l"Distance (km)" -Bya200f100+l"Depth (km)" -BltSe -Y-5.25c
 gmt grdimage sim3 -E300 -Q -Cmycpt.cpt
-gmt plot moho3 -W0.5p,black,dashed -Gwhite -t30
+gmt plot moho3 -W0.5p,black,dashed -Gwhite #-t30
 gmt plot moho3 -Wthick,black,dashed
 
 #gmt plot LAB3 -Wthick,RED2,dashed

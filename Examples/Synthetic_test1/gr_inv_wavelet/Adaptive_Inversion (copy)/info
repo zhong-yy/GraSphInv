@@ -1,0 +1,15 @@
+1. Initial inverion mesh
+Range of the latitude: 20, 40
+Range of the longitude: 90, 110
+Range of the depth: 0, 400000
+Number of elements along radius in the initial mesh 5
+Number of elements along latitude in the initial mesh 10
+Number of elements along longitude in the initial mesh 10
+Total number of elements in the initial mesh 500
+
+2. Final mesh
+Element number 1480
+
+3. Evaluation of the inversion
+Final misfit 0.988267
+Running time 12.8278 seconds

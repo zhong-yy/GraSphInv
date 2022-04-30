@@ -66,8 +66,6 @@ to disable netcdf library before building the program.
 
 ### 1.1.3 Visualization tools
 
-
-
 ### 1.2 Build
 
 The building tools [GNU make](https://www.gnu.org/software/make/) and [cmake](https://cmake.org/) should be installed before building the program, which are available on most linux platforms. 
@@ -211,8 +209,8 @@ You can compare it with `Non-adaptive_Inversion/config_inversion` and see the di
 $ cd Examples/Synthetic_test1
 # copy the data file
 $ cp ./dobs_g_r ./gr_inv/Adaptive_Inversion_pet
-# copy the velocity model file
-$ cp ./crg_model ./gr_inv/Adaptive_Inversion_pet
+# copy the reference model file
+$ cp ./ref_model ./gr_inv/Adaptive_Inversion_pet
 # go to the directory Adaptive_Inversion_crg 
 $ cd ./gr_inv/Adaptive_Inversion_pet
 
@@ -338,10 +336,6 @@ Run the inversion
 ```bash
 GraSPhInv config
 ```
-
-
-
-
 
 ## 4 Output
 

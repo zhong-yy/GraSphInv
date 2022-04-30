@@ -230,7 +230,7 @@ Line 76 in file `config_inversion`
 ref_model xyz 40 40 20 0 
 ```
 
-specifies the reference model file ref_model.  xyz means the coordinates are ordered as latitude, longitude, depth. If the format for coordinates is "radius, latitude, longitde", then it should be zxy. `40 40 20` are number of values along latitude, longitude and depth, whose order is also subject to the order of `xyz`. The last number coordinate that changes fastest in the file. 0: latitude changes fastest, 1: longitude changes fastest.
+specifies the reference model file **ref_model**.  `xyz` means the coordinates are ordered as latitude, longitude, depth. If the format for coordinates is "radius, latitude, longitde", then it should be `zxy`. `40 40 20` are number of values along latitude, longitude and depth, whose order is also subject to the order of `xyz`. The last number coordinate that changes fastest in the file. 0: latitude changes fastest, 1: longitude changes fastest.
 
 For example, the following file should be described by `xyz 3 2 1 0`
 

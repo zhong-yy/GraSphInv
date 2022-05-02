@@ -25,7 +25,7 @@
 #Depth weighting exponent. Generally, it's 2 for g, 3 for ggt
 1.6
 
-#First para: Maximal regularization parameter
+#First para: maximum regularization parameter
 #Second para: how many regularization parameters will be tried at most?
 #Third: decreasing rate of regulariziont parameter
 1e2 50 0.7
@@ -37,16 +37,16 @@
 #misfits at 2 consecutive iterations is smaller than this factor
 0.025
 
-#Tolerance value and Maximal number of iterations for LSCG solver (least-square conjugate gradient) 
+#Tolerance value and maximum number of iterations for LSCG solver (least-square conjugate gradient) 
 1e-6 100
 
-#Maximal number of iterations for gauss-newton
+#maximum number of iterations for gauss-newton
 9
 
 #upper limit and lower limit of the inverted parameter
 -300 300
 
-#Maximal times of refinement. If it's 0, the mesh will not be refined.
+#maximum times of refinement. If it's 0, the mesh will not be refined.
 8
 
 #Limits on minimum cell size in the adaptively refined mesh, only valid when the last line is greater than 0

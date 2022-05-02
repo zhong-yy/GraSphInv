@@ -11,4 +11,3 @@ dependencies:
   - netcdf4
   - numba
   - jupyterlab
-prefix: /home/yyzhong/anaconda3/envs/Graplot

@@ -1,11 +1,19 @@
-3 directories
+5 directories
 .
-├── gr_inv                   : Inversion using full sensitivity matrices
-├── gr_inv_wavelet           : Inversion using wavelet compression
+├── ggt_inv                  : Inversion of gravity gradient tensor
+├── gr_inv                   : Inversion of gr data using wavelet compression
+├── gr_inv_wavelet           : Inversion of gr data using full sensitivity matrices
+├── Trr_inv                  : Inversion of Trr data
 └── True_model               : plot the synthetic model
 
 
-8 files
+
+
+
+
+
+
+files
 .
 ├── convert_ref.py           : convert the S-wave model to density model
 ├── convert_test.py

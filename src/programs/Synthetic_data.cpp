@@ -120,7 +120,7 @@ int main() {
     ofstream os("sites");
     os << ob;
 
-    Fwd forward(tmesh, ob, Compute_g_r, 4);
+    Fwd forward(tmesh, ob, Compute_g_r, 8);
     // Fwd forward(tmesh, ob,
     // Compute_T_rr|Compute_T_rtheta|Compute_T_rphi|Compute_T_thetatheta|Compute_T_thetaphi|Compute_T_phiphi,8);
     // Fwd forward(&tmesh, &ob, Compute_T_rr|Compute_T_rtheta, 8);

@@ -1,3 +1,6 @@
+# This file specifies the inversion parameters. 
+# Lines that start with # are comments
+
 #Order of Gauss-Legendre quadrature
 4
 
@@ -16,13 +19,15 @@
 
 #Weights of different regularization terms
 #a_s a_r a_theta a_phi a_crg
-#last term a_crg is the weight of cross-gradient constraint, which makes sense only if the cross-gradient constraint is used
+#last term a_crg is the weight of cross-gradient constraint. Parameter a_crg takes effect only when the cross-gradient constraint is used
 1e-8 1e-1 1e0 1e0 0
 
 #Depth weighting exponent. Generally, it's 2 for g, 3 for ggt
 1.6
 
-#Maximal regularization parameter (lambda) used, number of lambda used for trial
+#First para: maximum regularization parameter
+#Second para: how many regularization parameters will be tried at most?
+#Third: decreasing rate of regulariziont parameter
 1e2 50 0.7
 
 #Target misfit
@@ -32,17 +37,16 @@
 #misfits at 2 consecutive iterations is smaller than this factor
 0.025
 
-#Tolerance value and Maximal number of iterations for LSCG solver (least-square
-# conjugate gradient) 
+#Tolerance value and maximum number of iterations for LSCG solver (least-square conjugate gradient) 
 1e-6 100
 
-#Maximal number of iterations for gauss-newton
+#maximum number of iterations for gauss-newton
 5
 
 #upper limit and lower limit of the inverted parameter
 -300 300
 
-#Maximal times of refinement. If it's 0, the mesh will not be refined.
+#maximum times of refinement. If it's 0, the mesh will not be refined.
 0
 
 #Limits on minimum cell size in the adaptively refined mesh, only valid when the last line is greater than 0

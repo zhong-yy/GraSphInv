@@ -67,10 +67,11 @@
 #cross-gradient constraint model file, followed by order of coordinates.
 #this line tells the program to read the file named "config_model". 
 #"xyz 40 40 20" means the first 3 columns are latitude, longitude, depth, respectively.
-#And numbers of nodes along latitude, longitude, radius are 40, 40, 20 respectively
-#But if the file format is "radius, latitude, longitde", we should use "zxy 20 40 40"
-#The final number should be 0 or 1. 0 means latitude changes fastest, 1 means longitude changes fastest
-#Note: latitude and longitude is in degree and depth in kilometer
+#Numbers of nodes along latitude, longitude, radius are 40, 40, 20 respectively
+#If the file format is "radius, latitude, longitde", we should use "zxy 20 40 40"
+#The last number in this line denotes the axis that changes fastest, which should be 0 or 1,
+#where 0 means the latitude changes fastest, 1 means the longitude changes fastest
+#Units: latitude and longitude are in degree and depth is in kilometer
 crg_model xyz 40 40 20 0 
 
 #whether to use petrophysical constraint. 0 no, 1 yes

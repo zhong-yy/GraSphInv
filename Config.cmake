@@ -1,5 +1,5 @@
 # Specify the c++ compiler. The default one is icpx (oneAPI).
-#set(ENV{CXX} icpx)
+#set(ENV{CXX} g++)
 set(ENV{CXX} icpx)
 
 # Specify whether netcdf library will be used. The value should be TRUE or FALSE

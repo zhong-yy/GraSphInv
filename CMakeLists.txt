@@ -140,7 +140,7 @@ target_link_libraries(test_wavelet_forward
     )
 install(FILES py_src/interpData.py
     TYPE BIN)
-install(TARGETS GraSphInv RemoveCrustalEffect Synthetic_data ConvertTxt2Vtk Extract_slice Test_ordering test_wavelet_forward
+install(TARGETS GraSphInv RemoveCrustalEffect Synthetic_data Synthetic_data_ggt ConvertTxt2Vtk Extract_slice Test_ordering test_wavelet_forward
     )
 #if(UNIX)
 #message("Add the installation path to your PATH:\n1. Edit ~/.bashrc file, and add the following line\nexport PATH=${CMAKE_INSTALL_PREFIX}/bin$\{PATH:+:$\{PATH}}")

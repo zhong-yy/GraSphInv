@@ -2,7 +2,11 @@
 
 [![DOI](https://zenodo.org/badge/444264186.svg)](https://zenodo.org/badge/latestdoi/444264186)
 
-**GraSphInv** is a program for gravity inversion using adaptive inversion mesh refinement in the spherical coordinate system.  It can also incorporate a-priori constraints in the inversion. The input data can be any combination of components of vector gravity field or gravity gradient tensor. The output is a 3D distribution of density contrasts. Wavelet compression is also  supported to reduce the memory consumption.
+**GraSphInv** is a program for gravity inversion using adaptive inversion mesh refinement in the spherical coordinate system.  A-priori constraints can be used in the inversion. Wavelet compression can be used to reduce memory consumption. 
+
+
+
+The input data can be any combination of components of vector gravity field or gravity gradient tensor. The output is a 3D distribution of density contrasts. 
 
 ## 1 Installation
 
@@ -10,15 +14,15 @@
 
 #### 1.1.1 Compiler
 
-The inversion program is written in C++. Cne of the following compilers can be used to compile the program:
-
-- [Intel oneAPI (based on Clang)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html#gs.koucg5) (2021, 2022)
+The inversion program is written in C++. One of the following compilers can be used to compile the program:
 
 - [GNU g++](https://gcc.gnu.org/) (gcc version 9.3.0)
 
+- [Intel oneAPI (based on Clang)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html#gs.koucg5) (2021, 2022)
+
 > The versions we have tested are given in brackets
 
-The default is oneAPI compiler for which the command is `icpx`. You can modify the file `GraSphInv/Config.cmake` to specify a compiler. For example, change `set(ENV{CXX} icpx)` to `set(ENV{CXX} g++)` to use a `g++` compiler.
+The default is oneAPI compiler for which the command is `icpx`. You can modify the file `GraSphInv/Config.cmake` to specify a compiler. For example, change `set(ENV{CXX} icpx)` to `set(ENV{CXX} g++)` to use a `g++` compiler. Since MKL is only supported by intel compilers, if the `g++` compiler is used, you may need to change `set(USE_MKL TRUE)` to `set(USE_MKL FALSE)` in file `GraSphInv/Config.cmake`.
 
 #### 1.1.2 Third-party libraries
 

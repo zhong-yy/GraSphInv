@@ -96,11 +96,11 @@ gmt set MAP_FRAME_PEN 1.5p,black
 intensity=+a-45+nt0.75+m0
 contours=-45,-15,15,45+o+gGRAY+f7p
 ct_lb_d=d5c
-gmt makecpt -Cwysiwyg -T-55/55/0.1 -Z -Ic -H -D >mycpt.cpt
+gmt makecpt -Cwysiwyg -T-60/60/0.1 -Z -Ic -H -D >mycpt.cpt
 
 #		gmt basemap -JL88/34/34/45/4.8c -R$Region1 -BWSen -Bxa10f2g10 -Bya5f1g5
 gmt basemap -JQ88/34/6c -R$Region1 -BWSen -Bxa10f2g10 -Bya5f1g5
-gmt grdimage ${rslice1} -E300 -Q -nc -I$intensity -Cmycpt.cpt  #-I+a45+nt1+m0
+gmt grdimage ${rslice1} -E300 -Q -nc  -Cmycpt.cpt #-I$intensity  #-I+a45+nt1+m0
 #gmt grdcontour ${rslice1} -A$contours -G$ct_lb_d
 plot_profiles
 plot_blocks
@@ -112,7 +112,7 @@ echo "(a) 100km depth" | gmt text -F+cTL+f9p, -D-0.9c/0.57c -N
 #-JL88/34/34/45/4.8c
 gmt basemap -JQ88/34/6c -R$Region1 -BWSen -Bxa10f2g10 -Bya5f1g5 -X7.55c
 #gmt grdimage @earth_relief_01m -Cetopo1 -t20 -I+d
-gmt grdimage ${rslice2} -E300 -Q -nc -I$intensity -Cmycpt.cpt  #-I+a45+nt1+m0
+gmt grdimage ${rslice2} -E300 -Q -nc  -Cmycpt.cpt #-I$intensity  #-I+a45+nt1+m0
 #gmt grdcontour ${rslice2} -A$contours -G$ct_lb_d
 plot_profiles
 plot_blocks
@@ -121,7 +121,7 @@ echo "(b) 150km depth" | gmt text -F+cTL+f9p, -D-0.9c/0.57c -N
 
 gmt basemap -JQ88/34/6c -R$Region1 -BWSen -Bxa10f2g10 -Bya5f1g5 -X-7.55c -Y-5.75c
 #gmt grdimage @earth_relief_01m -Cetopo1 -t20 -I+d
-gmt grdimage ${rslice3} -E300 -Q -nb -I$intensity -Cmycpt.cpt  #-I+a45+nt1+m0
+gmt grdimage ${rslice3} -E300 -Q -nb  -Cmycpt.cpt #-I$intensity  #-I+a45+nt1+m0
 #gmt grdcontour ${rslice3} -A$contours -G$ct_lb_d
 plot_profiles
 plot_blocks
@@ -130,7 +130,7 @@ echo "(c) 200km depth" | gmt text -F+cTL+f9p, -D-0.85c/0.57c -N
 
 gmt basemap -JQ88/34/6c -R$Region1 -BWSen -Bxa10f2g10 -Bya5f1g5 -X7.55c
 #gmt grdimage @earth_relief_01m -Cetopo1 -t20 -I+d
-gmt grdimage ${rslice4} -E300 -Q -nc -I$intensity -Cmycpt.cpt  #-I+a45+nt1+m0
+gmt grdimage ${rslice4} -E300 -Q -nc  -Cmycpt.cpt #-I$intensity  #-I+a45+nt1+m0
 #gmt grdcontour ${rslice4} -A$contours -G$ct_lb_d
 #		gmt colorbar -DJBC+h+w4.5c/0.2c+o0.c/0.8c+e -Bxaf -By+L"kg/m@+3@+" -Cmycpt.cpt
 gmt colorbar -Dn-0.6/-0.25+h+w5.3c/0.2c+o0.c/-0.c+e -Bxa50f10 -By+L"kg/m@+3@+" -Cmycpt.cpt --MAP_FRAME_PEN=0.6p

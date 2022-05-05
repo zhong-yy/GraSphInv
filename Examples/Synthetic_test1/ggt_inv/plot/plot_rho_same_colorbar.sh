@@ -81,7 +81,7 @@ python make_frame.py ${block_lat[0]} ${block_lat[1]} ${block_dep[0]} ${block_dep
 python make_frame.py ${block_lat2[0]} ${block_lat2[1]} ${block_dep2[0]} ${block_dep2[1]} $true_model_lon2
 python make_frame.py ${block_lat3[0]} ${block_lat3[1]} ${block_dep3[0]} ${block_dep3[1]} $true_model_lon2
 
-gmt begin inverted_model_FTG eps E300
+gmt begin inverted_model_FTG pdf E300
 #	gmt set FONT_TITLE 9p
 #	gmt set MAP_TITLE_OFFSET 9p 
 	gmt set FONT 9p

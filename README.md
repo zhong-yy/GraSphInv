@@ -4,8 +4,6 @@
 
 **GraSphInv** is a program for gravity inversion using adaptive inversion mesh refinement in the spherical coordinate system.  A-priori constraints can be used in the inversion. Wavelet compression can be used to reduce memory consumption. 
 
-
-
 The input data can be any combination of components of vector gravity field or gravity gradient tensor. The output is a 3D distribution of density contrasts. 
 
 ## 1 Installation
@@ -38,7 +36,7 @@ We use the [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) librar
 
 Netcdf library is used to write the inverison model to netcdf4 format (`.nc` files). But if you don't need netcdf4 outputs, it is not necessary to compile this inversion program with `netcdf` library. 
 
-A downside of netcdf format is that before the final model is written into a netcdf file, all cells in the irregular mesh need to subdivided into the size of the smallest cell in the mesh. However, the irregular mesh is kept as it is in the `.vtk` or `.txt` outputs.
+> A downside of netcdf format is that before a final model is written into a netcdf file, all cells in the irregular model mesh need to be subdivided into the size of the smallest cell in the mesh. However, the irregular mesh is kept as it is in the `.vtk` or `.txt` outputs.
 
 ```shell
 #The fastest way to install netcdf:

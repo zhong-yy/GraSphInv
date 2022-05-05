@@ -30,7 +30,7 @@ We use the [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) librar
 
 (2) GNU Scientific Library (GSL)
 
-**[gsl](https://www.gnu.org/software/gsl/)** is used to calculate wavelet transforms.
+**[gsl](https://www.gnu.org/software/gsl/)** is only used to calculate wavelet transforms.
 
 (3) NetCDF (optional)
 
@@ -52,7 +52,7 @@ sudo yum install netcdf-cxx-devel
 # https://github.com/Unidata/netcdf-cxx4
 ```
 
-In the file `GraSphInv/Config.cmake` , change 
+To disable netcdf library before building the program,  open the file `GraSphInv/Config.cmake`, change 
 
 ```
 set(USE_NETCDF TRUE)
@@ -63,10 +63,6 @@ to
 ```
 set(USE_NETCDF FALSE)
 ```
-
-to disable netcdf library before building the program.
-
-# 
 
 ### 1.2 Build
 
@@ -86,13 +82,13 @@ Steps to build the program:
 
 (6) `make install`
 
-After `make install`, all executable programs can be found in the `GraSphInv/bin` directory. Optionally, one may want to add  `GraSphInv/bin` directory to the environmental variable `PATH` in `~/.bashrc`, so that  it is not necessary to copy the  executable files to working directories every time. For examples, open `~/.bashrc`
+After `make install`, all executable programs can be found in the `GraSphInv/bin` directory. Optionally, one may want to add  `GraSphInv/bin` directory to the environmental variable `PATH` in `~/.bashrc`, so that  it is not necessary to copy the  executable files to working directories every time. For example, open the `~/.bashrc` file
 
 ```bash
-vim ~/.bashrc
+$ vim ~/.bashrc
 ```
 
-and add following lines:
+and add the following lines:
 
 ```bash
 export PATH=/home/yyzhong/GraSphInv/bin${PATH:+:${PATH}}                                                                                                                                                           
@@ -319,7 +315,7 @@ Combine 5 GGT components into one file,
 python combine5files.py
 ```
 
-Specify the number of used components, and the order of different components in the data configuration file:
+Specify the number of used components, and the order of different components in the data configuration file `config_data`:
 
 ```
 ...
@@ -338,6 +334,8 @@ Run the inversion
 ```bash
 GraSPhInv config
 ```
+
+Then use the shell scripts to in the `/plot/` subdirectory to display the inversion results.
 
 ## 4 Output
 

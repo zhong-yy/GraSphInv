@@ -355,4 +355,4 @@ We also provide a python script `interpData.py` to interpolate inverted values a
 
 ## 5 References
 
-Yiyuan Zhong, Zhengyong Ren, Jingtian Tang, Yufeng Lin, Bo Chen, Yangfan Deng, Yingde Jiang. "Constrained gravity inversion with adaptive inversion grid refinement in spherical coordinates and its application for  mantle structure beneath Tibetan plateau", minor revision, 2022
+Yiyuan Zhong, Zhengyong Ren, Jingtian Tang, Yufeng Lin, Bo Chen, Yangfan Deng, Yingde Jiang. "Constrained gravity inversion with adaptive inversion grid refinement in spherical coordinates and its application for  mantle structure beneath Tibetan plateau", accepted, 2022

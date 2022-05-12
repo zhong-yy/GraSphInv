@@ -13,6 +13,8 @@ compile_commands.json
 
 .vscode/
 
+__pychache__/
+
 /My_tests/
 
 /Misc/

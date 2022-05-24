@@ -26,11 +26,11 @@ The default is oneAPI compiler for which the command is `icpx`. You can modify t
 
 (1) Eigen
 
-We use the [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) library for basic linear algebra operations. Eigen is a template library, so it is not necessary to install. A copy of Eigen can be found in `GraSphInv/src/3rd_party_lib/eigen`.
+We use the [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page) library for basic linear algebra operations. Eigen is a template library, so you don't need to worry about the installation. A copy of Eigen can be found in `GraSphInv/src/3rd_party_lib/eigen`.
 
 (2) GNU Scientific Library (GSL)
 
-**[gsl](https://www.gnu.org/software/gsl/)** is only used to calculate wavelet transforms.
+**[gsl](https://www.gnu.org/software/gsl/)** is only used to calculate wavelet transforms. Follow the instructions in the gsl source code package to install it (some usual installation steps, `configure`, `make`, `make install`).
 
 (3) NetCDF (optional)
 

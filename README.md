@@ -209,7 +209,7 @@ $ cd Examples/Synthetic_test1
 $ cp ./dobs_g_r ./gr_inv/Adaptive_Inversion_pet
 # copy the reference model file
 $ cp ./ref_model ./gr_inv/Adaptive_Inversion_pet
-# go to the directory Adaptive_Inversion_crg 
+# go to the directory Adaptive_Inversion_pet
 $ cd ./gr_inv/Adaptive_Inversion_pet
 
 # have a look at the configuration files
@@ -228,7 +228,7 @@ Line 76 in file `config_inversion`
 ref_model xyz 40 40 20 0 
 ```
 
-specifies the reference model file **ref_model**.  `xyz` means the coordinates are ordered as latitude, longitude, depth. If the format for coordinates is "radius, latitude, longitde", then it should be `zxy`. `40 40 20` are number of values along latitude, longitude and depth, whose order is also subject to the order of `xyz`. The last number coordinate that changes fastest in the file. 0: latitude changes fastest, 1: longitude changes fastest.
+specifies the reference model file **ref_model**.  `xyz` means the coordinates are ordered as `latitude, longitude, depth`. If the order is  "radius, latitude, longitde", then it should be `zxy`. In addition, `40 40 20` are the number of grid nodes along latitude, longitude and depth, whose order is also subject to the order of `xyz`. The last number represents the coordinate that changes fastest in the file, with 0 indicating latitude changes fastest, 1 indicating longitude changes fastest.
 
 For example, the following file should be described by `xyz 3 2 1 0`
 
@@ -355,4 +355,4 @@ We also provide a python script `interpData.py` to interpolate inverted values a
 
 ## 5 References
 
-Yiyuan Zhong, Zhengyong Ren, Jingtian Tang, Yufeng Lin, Bo Chen, Yangfan Deng, Yingde Jiang. "Constrained gravity inversion with adaptive inversion grid refinement in spherical coordinates and its application for  mantle structure beneath Tibetan plateau", 2022. https://doi.org/10.1029/2021JB022916
+Yiyuan Zhong, Zhengyong Ren, Jingtian Tang, Yufeng Lin, Bo Chen, Yangfan Deng, Yingde Jiang. Constrained gravity inversion with adaptive  inversion grid refinement in spherical coordinates and its application  to mantle structure beneath Tibetan Plateau. *Journal of Geophysical Research: Solid Earth*, 127, e2021JB022916. https://doi.org/10.1029/2021JB022916

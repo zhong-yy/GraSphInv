@@ -92,10 +92,10 @@ and add the following lines:
 
 ```bash
 export PATH=/home/yyzhong/GraSphInv/bin${PATH:+:${PATH}}                                                                                                                                                           
-export PYTHONPATH=/home/yyzhong/GraSphInv/bin${PYTHONPATH:+:${PYTHONPATH}}
+export PYTHONPATH=[path_to_GraSphInv]/GraSphInv/bin${PYTHONPATH:+:${PYTHONPATH}}
 ```
 
-where `/home/yyzhong/` should be changed the path to `GraSphInv` in your computer.
+where `[path_to_GraSphInv]` should be changed the path to `GraSphInv` in your computer. You can open a terminal under the GraSphInv folder and type `pwd` to check the path.
 
 ## 2 Usage
 
@@ -369,3 +369,7 @@ doi = {https://doi.org/10.1029/2021JB022916},
 year = {2022}
 }
 ```
+
+## Troubleshooting
+1. Error while loading shared libraries XXX.so.XX cannot open shared object file: No such file or directory
+Try adding`export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH` to ~/.bashrc

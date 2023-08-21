@@ -14,9 +14,8 @@ The input data can be any combination of components of vector gravity field or g
 
 The inversion program is written in C++. One of the following compilers can be used to compile the program:
 
-- [GNU g++](https://gcc.gnu.org/) (gcc version 9.3.0)
-
-- [Intel oneAPI (based on Clang)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html#gs.koucg5) (2021, 2022)
+- [Intel oneAPI (based on Clang)](https://www.intel.com/content/www/us/en/developer/tools/oneapi/toolkits.html#gs.koucg5) (2021, 2022 **recommended**)
+- [GNU g++](https://gcc.gnu.org/) (gcc version 9.3.0, not fully tested)
 
 > The versions we have tested are given in brackets
 
@@ -374,3 +373,10 @@ year = {2022}
 1. Error while loading shared libraries XXX.so.XX cannot open shared object file: No such file or directory
 
 Try adding`export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH` to ~/.bashrc
+
+2. Unexpected computation errors in the `Tibet50kmH_0_25x0_25/data/Crust_Correction` example
+
+If you are using g++ 11.3 or 9.5 and encounter this issue, please try intel compiler first.  See issue https://github.com/zhong-yy/GraSphInv/issues/1. I still have no idea of the exact cause of this problem. 
+
+Intel oneAPI 2021,2022 have been tested. Although I don't have time to make a comprehensive test of Intel oneAPI 2023 on all examples, I have tested it on the crust correction example and I suppose it also works well for other examples. However, efficacy of future version of Intel compiler is not guaranteed.
+

@@ -378,5 +378,5 @@ Try adding`export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH` to ~/.bashrc
 
 If you are using g++ 11.3 or 9.5 and encounter this issue, please try intel compiler first.  See issue https://github.com/zhong-yy/GraSphInv/issues/1. I still have no idea of the exact cause of this problem. 
 
-Intel oneAPI 2021,2022 have been tested. Although I don't have time to make a comprehensive test of Intel oneAPI 2023 on all examples, I have tested it on the crust correction example and I suppose it also works well for other examples. However, efficacy of future versions of Intel compiler is not guaranteed.
+Intel oneAPI 2021,2022 have been successfully tested. The 2023 version of intel oneAPI has been tested for the crust correction example, though I don't have time to test the 2023 version of Intel oneAPI for all examples. Applicability of future versions of Intel compiler is not guaranteed.
 

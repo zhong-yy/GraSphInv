@@ -376,7 +376,7 @@ Try adding`export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH` to ~/.bashrc
 
 2. Unexpected computation errors in the `Tibet50kmH_0_25x0_25/data/Crust_Correction` example
 
-If you are using g++ 11.3 or 9.5 and encounter this issue, please try intel compiler first.  See issue https://github.com/zhong-yy/GraSphInv/issues/1. I still have no idea of the exact cause of this problem. 
+If you are using g++ 11.3 or 9.5 and encounter this issue, please try intel compiler first.  See issue https://github.com/zhong-yy/GraSphInv/issues/1 for details.
 
-Intel oneAPI 2021,2022 have been successfully tested. The 2023 version of intel oneAPI has been tested for the crust correction example, though I don't have time to test the 2023 version of Intel oneAPI for all examples. Applicability of future versions of Intel compiler is not guaranteed.
+Intel oneAPI 2021,2022 have been successfully tested. The 2023 version of intel oneAPI has been tested for the crust correction example, though I don't have time to test intel oneAPI 2023 for all examples.
 

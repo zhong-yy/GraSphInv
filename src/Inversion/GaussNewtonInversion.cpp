@@ -1435,7 +1435,7 @@ VectorXd GaussNewtonInversion::solve_cg(
     VectorXd r_last(Nm);
     VectorXd ATb(Nm);
     ATb.setZero();
-    VectorXd Wdb = Wd * s.segment(0, Nd);
+    VectorXd Wdb = Wd * b.segment(0, Nd);
     VectorXd GTwdb;
     this->GT_vec_mul(Wdb, GTwdb);
     // ATb += P * G.transpose() * Wd * b.segment(0, Nd);
@@ -1461,14 +1461,9 @@ VectorXd GaussNewtonInversion::solve_cg(
         ATb2 += ATb(k) * ATb(k);
     }
     for (i = 0; i < maxit; i++) {
-#pragma omp parallel sections
-        {
-#pragma omp section
-            { p = -r + beta * p; }
-            // t=A*p
-#pragma omp section
-            { Pp = P * p; }
-        }
+        p = -r + beta * p;
+        // t=A*p
+        Pp = P * p;
 
 #pragma omp parallel sections
         {
@@ -1510,14 +1505,28 @@ VectorXd GaussNewtonInversion::solve_cg(
         // alpha /= t.transpose() * t;
         alpha = r2 / t2;
 #pragma omp parallel for
-        for (int k = 0; k < Nm; k++) {
-            dx(k) += alpha * p(k);
+        for (int k = 0; k < Nd; k++) {
             s(k) += alpha * t(k);
         }
 #pragma omp parallel for
-        for (int k = Nm; k < nrow; k++) {
-            s(k) += alpha * t(k);
+        for (int k = 0; k < Nm; k++) {
+            dx(k) += alpha * p(k);
+            // s(k) += alpha * t(k);
+            s(k + Nd) += alpha * t(k + Nd);
+            s(k + Nd + Nm) += alpha * t(k + Nd + Nm);
+            s(k + Nd + 2 * Nm) += alpha * t(k + Nd + 2 * Nm);
+            s(k + Nd + 3 * Nm) += alpha * t(k + Nd + 3 * Nm);
+            // s(k + Nd + 4 * Nm) += alpha * t(k + Nd + 4 * Nm);
         }
+        if (use_cross_gradient_constraint == true) {
+#pragma omp parallel for
+            for (int k = 0; k < Nm; k++) {
+                s(k + Nd + 4 * Nm) += alpha * t(k + Nd + 4 * Nm);
+                s(k + Nd + 5 * Nm) += alpha * t(k + Nd + 5 * Nm);
+                s(k + Nd + 6 * Nm) += alpha * t(k + Nd + 6 * Nm);
+            }
+        }
+
         // dx += alpha * p;
         // s += alpha * t;
 
@@ -1580,4 +1589,3 @@ VectorXd GaussNewtonInversion::solve_cg(
     }
     return dx;
 }
-

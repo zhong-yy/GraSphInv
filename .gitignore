@@ -19,7 +19,8 @@ __pychache__/
 
 /Misc/
 /bin/
-
+*(Copy)/
+.~lock*
 
 
 #gmt
